@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8">
+<board>
+	<layers>
+		<f.Cu>
+			<track>
+				<from>X:123,Y:456</from>
+				<to>X:456,Y:123</to>
+			</track>
+		</f.Cu>
+	</layers>
+</board>

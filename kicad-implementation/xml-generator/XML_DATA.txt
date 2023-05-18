@@ -1,0 +1,9 @@
+aaaaaaa<?xml version="1.0" encoding="UTF-8">
+<board>
+    <tracks>
+        <from>X:145290000,Y:-83820000</from>
+        <from>X:137947500,Y:-83820000</from>
+        <from>X:163070000,Y:-66040000</from>
+        <from>X:145290000,Y:-83820000</from>
+    </tracks>
+</board>
