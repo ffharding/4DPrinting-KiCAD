@@ -1,0 +1,81 @@
+(footprint "for_thing" (version 20211014) (generator pcbnew)
+  (layer "F.Cu")
+  (tedit 0)
+  (attr smd)
+  (fp_text reference "REF**" (at -0.08 -6.71 unlocked) (layer "F.SilkS")
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp 5adff7a2-665a-4a04-8895-a13e23d5df66)
+  )
+  (fp_text value "for_thing" (at -0.02 -5.25 unlocked) (layer "F.Fab")
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp b4cb3b45-80d9-42af-8c58-040e8fec53ad)
+  )
+  (fp_text user "${REFERENCE}" (at -0.02 -3.93 unlocked) (layer "F.Fab")
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp b93c2104-a4e2-435a-95a2-01694275d988)
+  )
+  (fp_rect (start -2 2.35) (end -3.6 5.54) (layer "F.SilkS") (width 0.0001) (fill solid) (tstamp 05cfe03f-5bb7-4fee-9ef5-d99ff80b1fde))
+  (fp_rect (start 3.61 -0.75) (end -3.59 -2.35) (layer "F.SilkS") (width 0.0001) (fill solid) (tstamp 28102332-0b2f-436e-a1ee-ee88b426ea0d))
+  (fp_rect (start 3.6 2.34) (end 2 5.69) (layer "F.SilkS") (width 0.0001) (fill solid) (tstamp 31b152de-739f-4f7c-a341-2d1c4287f7db))
+  (fp_rect (start 2.01 -2.35) (end 3.61 -5.54) (layer "F.SilkS") (width 0.0001) (fill solid) (tstamp 412a6de7-dfe5-4292-b64f-e89edc748081))
+  (fp_rect (start -3.6 0.75) (end 3.6 2.35) (layer "F.SilkS") (width 0.0001) (fill solid) (tstamp 6db7109f-88d8-4881-91ad-77e6695ce1c0))
+  (fp_rect (start -3.59 -2.34) (end -1.99 -5.69) (layer "F.SilkS") (width 0.0001) (fill solid) (tstamp 96f54770-1900-4848-a4ec-b6e22a47cf1b))
+  (pad "1" smd rect (at 0 4.35) (size 4 4) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 8554dde0-e998-4cfc-bd3a-fc0b610cb5ae))
+  (pad "2" smd rect (at 0 -4.35 180) (size 4 4) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 18403770-51db-481c-83a9-7bc3cfcb5501))
+  (zone (net 0) (net_name "") (layers *.Cu "F.SilkS") (tstamp 42e2dc15-53cf-4907-b5d6-efc825142dd3) (hatch edge 0.508)
+    (connect_pads (clearance 0))
+    (min_thickness 0.254)
+    (keepout (tracks not_allowed) (vias not_allowed) (pads allowed ) (copperpour not_allowed) (footprints allowed))
+    (fill (thermal_gap 0.508) (thermal_bridge_width 0.508))
+    (polygon
+      (pts
+        (xy 3.6 6.8)
+        (xy 2 6.8)
+        (xy 2 2.34)
+        (xy -2 2.35)
+        (xy -2 6.8)
+        (xy -3.6 6.8)
+        (xy -3.6 0.75)
+        (xy 3.6 0.75)
+      )
+    )
+  )
+  (zone (net 0) (net_name "") (layers *.Cu "F.SilkS") (tstamp aa8e51ed-9d28-4e47-a1a7-e58de8dda9a8) (hatch edge 0.508)
+    (connect_pads (clearance 0))
+    (min_thickness 0.254)
+    (keepout (tracks not_allowed) (vias not_allowed) (pads allowed ) (copperpour not_allowed) (footprints allowed))
+    (fill (thermal_gap 0.508) (thermal_bridge_width 0.508))
+    (polygon
+      (pts
+        (xy -3.59 -6.8)
+        (xy -1.99 -6.8)
+        (xy -1.99 -2.34)
+        (xy 2.01 -2.35)
+        (xy 2.01 -6.8)
+        (xy 3.61 -6.8)
+        (xy 3.61 -0.75)
+        (xy -3.59 -0.75)
+      )
+    )
+  )
+  (group "" (id 83af39b6-f91f-4fa3-9fb6-5173e73ebcfa)
+    (members
+      28102332-0b2f-436e-a1ee-ee88b426ea0d
+      412a6de7-dfe5-4292-b64f-e89edc748081
+      96f54770-1900-4848-a4ec-b6e22a47cf1b
+    )
+  )
+  (group "" (id c9102c83-1de1-4398-921a-4af6a5c540a3)
+    (members
+      05cfe03f-5bb7-4fee-9ef5-d99ff80b1fde
+      31b152de-739f-4f7c-a341-2d1c4287f7db
+      6db7109f-88d8-4881-91ad-77e6695ce1c0
+    )
+  )
+  (group "" (id d2254888-1d3d-442f-8543-7ca178de9633)
+    (members
+      8554dde0-e998-4cfc-bd3a-fc0b610cb5ae
+      c9102c83-1de1-4398-921a-4af6a5c540a3
+    )
+  )
+)
