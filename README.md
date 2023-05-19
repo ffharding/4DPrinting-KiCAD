@@ -23,4 +23,4 @@ The .pretty folder is a KiCAD library containing custom component footprints cre
 | charge_port.kicad_mod      | Footprint for 3.5mm charging port for battery   |
 | custom_lf356.kicad_mod      | Footprint for LF356 chip converted to surface mount device |
 | switch.kicad_mod      | Footprint for push button switch |
-| voltage_regulator.kicad_mod      | Footprint for LF356 chip converted to surface mount device |
+| voltage_regulator.kicad_mod      | Footprint for LD1117v33 voltage regulator converted to surface mount device |
