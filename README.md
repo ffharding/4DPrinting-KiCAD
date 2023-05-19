@@ -18,9 +18,9 @@ The .pretty folder is a KiCAD library containing custom component footprints cre
 | Component      | Description |
 | ------------- |:-------------:|
 | Battery.kicad_mod      | Footprint for battery cell pack connected with flywires to +/- pads     |
-| MODULE_ESP-M2.kicad_mod      | Footpritn for ESP-M2 wifi chip downloaded from SnapEDA: https://www.snapeda.com/parts/ESP-M2/Doctors%20of%20Intelligence%20%26%20Technology%20Co.%2C%20LTD/view-part/?ref=search&t=%20ESP-M2%20    |
+| MODULE_ESP-M2.kicad_mod      | Footprint for ESP-M2 wifi chip downloaded from SnapEDA: https://www.snapeda.com/parts/ESP-M2/Doctors%20of%20Intelligence%20%26%20Technology%20Co.%2C%20LTD/view-part/?ref=search&t=%20ESP-M2%20    |
 | TPU.kicad_mod      | Footprint for printed unit TPU   |
 | charge_port.kicad_mod      | Footprint for 3.5mm charging port for battery   |
 | custom_lf356.kicad_mod      | Footprint for LF356 chip converted to surface mount device |
 | switch.kicad_mod      | Footprint for push button switch |
-| voltage_regulator.kicad_mod      | Footprint for LF356 chip converted to surface mount device |
+| voltage_regulator.kicad_mod      | Footprint for LD1117v33 voltage regulator converted to surface mount device |
