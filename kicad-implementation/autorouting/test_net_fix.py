@@ -30,7 +30,7 @@ class Via:
         self.name = name
         self.coords = coords       
     
-file = open("4DPrinting-KiCAD\\kicad-implementation\\autorouting\\SensorTemp.ses", "r") ## EVERYTHING IS IN MICROMETERS
+file = open(r"kicad-files-components\SensorTemp.ses", "r") ## EVERYTHING IS IN MICROMETERS
 data = file.read()
 file.close()
 
@@ -91,7 +91,7 @@ for net in classy_net:
         plot_functions.plot_Via(via.coords)
 
 
-file2 = open(r"4DPrinting-KiCAD\kicad-implementation\autorouting\sensorV2-front_copper.gbr", "r")
+file2 = open(r"kicad-implementation\autorouting\sensorV2-front_copper.gbr", "r")
 data2 = file2.read()
 file2.close()
 
