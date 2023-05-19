@@ -44,7 +44,6 @@ via = re.compile(r'\(via \"(.+)\" ([-\d]+) ([-\d]+)')
 
 
 test_result = test.findall(data)
-#test_result[0][0] gives net, test_result[0][1] gives net name
 nets = []
 classy_net = []
 for i in range(len(test_result)):
@@ -71,7 +70,6 @@ wire_result = wire.findall(nets[0])
 
 tracks = []
 
-# net = classy_net[0] ## ERASE WHEN DONE
 for net in classy_net:
     coords_list = []
     for wire in net.wires:
@@ -91,7 +89,6 @@ for net in classy_net:
             plot_functions.plot_Path(path, color)
     for via in net.vias:
         plot_functions.plot_Via(via.coords)
-# plt.show()
 
 
 file2 = open(r"4DPrinting-KiCAD\kicad-implementation\autorouting\sensorV2-front_copper.gbr", "r")
@@ -125,8 +122,4 @@ for pad in pads:
                                linewidth=2/100)
     plt.gca().add_patch(rect)
 plt.show()
-# print("Debug")
-# print(pad_data)
-# print("Debug")
-# xml_generator.xml_gen(tracks, pad_data)
 
