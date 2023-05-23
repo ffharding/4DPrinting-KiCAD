@@ -24,3 +24,13 @@ The .pretty folder is a KiCAD library containing custom component footprints cre
 | custom_lf356.kicad_mod      | Footprint for LF356 chip converted to surface mount device |
 | switch.kicad_mod      | Footprint for push button switch |
 | voltage_regulator.kicad_mod      | Footprint for LD1117v33 voltage regulator converted to surface mount device |
+
+## Installation
+Clone repository into local machine using the following commmands in terminal or Git Bash:
+```
+git clone https://github.com/ffharding/4DPrinting-KiCAD.git
+```
+More information into Git repositories can be found on the [offical Git documentation](https://docs.github.com/en/repositories).
+
+After cloning the repository and installing the required software([KiCAD 6.0](https://www.kicad.org/download/) and [freerouting](https://github.com/freerouting/freerouting/releases
+)), open the plugin directory from KiCAD using the instructions included in the documentation folder and copy the source code of the feature to test.
