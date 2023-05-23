@@ -26,10 +26,10 @@ class Wire:
     def __str__(self):
 	    return f"Layer: {self.layer}, Width: {self.width}, Coordinates: ({self.coords})"
 class Via:
-     def __init__(self, name, coords):
+    def __init__(self, name, coords):
         self.name = name
-        self.coords = coords       
-    
+        self.coords = coords
+
 file = open(r"kicad-files-components\SensorTemp.ses", "r") ## EVERYTHING IS IN MICROMETERS
 data = file.read()
 file.close()
