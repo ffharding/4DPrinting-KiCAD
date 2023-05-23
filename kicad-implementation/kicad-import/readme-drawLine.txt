@@ -1,4 +1,4 @@
-README drawLine.py
+README drawLine.txt
 ------------------------
 Plots the lines of a csv file containing points in XY coordinate format.
 function run(filemame):
