@@ -70,7 +70,7 @@ componentType_result = componentType_regex.findall(data)
 
 componentTypeOutline_regex = re.compile(r'\(outline[^\n]+')
 componentTypePin_regex = re.compile(r'\(pin (\S+) (\d+) ([-\d\.]+) ([-\d\.]+)')
-componentTypeKeepout_regex = re.compile(r'\((keepout[\s\S]*?(?=\)\)))')
+componentTypeKeepout_regex = re.compile(r'\(((keepout|via_keepout)[\s\S]*?(?=\)\)))')
 
 
 componentTypes = [] ## Dictionaries will probably be better on the long term
@@ -81,8 +81,6 @@ for match in componentType_result:
     pins = componentTypePin_regex.findall(match[0])
     componentType = ComponentType(name, outline, keepout, pins)
     componentTypes.append(componentType)
-print(componentTypes)
-
 
 
 ### Get component information
@@ -93,7 +91,9 @@ components_results = components_regex.findall(data)
 
 ## Complete component and pad information
 components = []
-component_regex = re.compile(r'\(place (\S+) ([\d\.-]+) ([\d\.-]+) (\w+) ([\d\.-]+)')
+component_regex = re.compile(
+    r'\(place (\S+) ([\d\.-]+) ([\d\.-]+) (\w+) ([\d\.-]+)'
+    )
 
 for match in components_results:
     component_result = component_regex.findall(match[0])
@@ -101,3 +101,4 @@ for match in components_results:
         temp = list(component)
         classy_component = Component(temp[0], (float(temp[1]), float(temp[2])), temp[3], float(temp[4]), match[1])
         components.append(classy_component)
+
