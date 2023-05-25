@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import math
 def plot_Path(path, color):
     '''
     Plots the path of a track by plotting one line at a time to comply in the correct order
@@ -29,4 +30,39 @@ def plot_Via(coordinates):
                                 fill=True,
                                 color='yellow',
                                linewidth=2)
+    plt.gca().add_patch(rect)
+
+def rotate(orientation, height, width, x, y):
+    """
+    Rotate the pad counterclockwise using math calculations for position
+    """
+    width, height = height, width
+    rad_sin = math.sin(math.radians(float(orientation)))
+    rad_cos = math.cos(math.radians(float(orientation)))
+    x, y = (rad_cos * x - rad_sin * y, rad_sin * x + rad_cos * y)
+
+    return height, width, x, y
+
+def plot_Pad(pad, component):
+    '''
+    Plot pad to pyplot using pad information and component position
+    Inputs:
+        pad: Pad object
+        component: Component object
+    Output:
+        Plot to pyplot
+    '''
+    component_pos = component.pos
+    pad_x, pad_y = pad.rel_pos
+    width = pad.width
+    height = pad.height
+    if (component.orientation != 0):
+        print(component.orientation)
+        height, width, pad_x, pad_y   = rotate(component.orientation, height, width, pad_x, pad_y)
+    pad_x, pad_y = (component_pos[0] + pad_x,component_pos[1] + pad_y)
+    left, bottom = (pad_x - width/2,pad_y - height/2)
+    rect=mpatches.Rectangle((left*10,bottom*10),width*10,height*10,
+                                fill=True,
+                                color='red',
+                            linewidth=2)
     plt.gca().add_patch(rect)

@@ -2,6 +2,7 @@ import re
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import plot_functions
+import component_parser
 # import xml_generator
 import pyperclip
 #import getPlot
@@ -64,7 +65,6 @@ for i in range(len(test_result)):
 wires = []
 for i in range(len(nets)):
     wire_result = wire.findall(nets[i])
-    # print(wire_result)
     wires.append(wire_result)
 wire_result = wire.findall(nets[0])
 
@@ -73,7 +73,6 @@ tracks = []
 for net in classy_net:
     coords_list = []
     for wire in net.wires:
-        #  print(wire)
             coords_list.append(wire)
     tracks.append(coords_list)
     track_count = 1
@@ -90,36 +89,15 @@ for net in classy_net:
     for via in net.vias:
         plot_functions.plot_Via(via.coords)
 
-
-file2 = open(r"kicad-implementation\autorouting\sensorV2-front_copper.gbr", "r")
+     
+file2 = open(r"kicad-files-components\SensorTemp.dsn", "r") ## EVERYTHING IS IN MICROMETERS
 data2 = file2.read()
 file2.close()
+components = component_parser.getComponents(data2)
 
-pad_shape = re.compile(r'(TO\.P),(\w+).+?X([0-9\-]+)Y([0-9\-]+)', re.S)
-pads = pad_shape.findall(data2)
-side = 700000
-pad_number = 1
-pad_data = []
-for pad in pads:
-    pad_number += 1
-    shape = pad[1]
-    if(shape == 'BT1'):
-            width = side * 4
-            height = side * 5
-            shape = "rectangle"
-    else:
-            width = side
-            height = side
-            shape = "square"
-
-    x = float(pad[2])
-    y = float(pad[3])
-    pad_data.append((x,y,width,height,shape))
-    left, bottom = (x - width/2,y - height/2)
-    rect=mpatches.Rectangle((left/100,bottom/100),width/100,height/100,
-                                fill=True,
-                                color='red',
-                               linewidth=2/100)
-    plt.gca().add_patch(rect)
+for component in components:
+    print(component.pads)
+    for pad in component.pads:
+        plot_functions.plot_Pad(pad, component)
 plt.show()
 
