@@ -2,23 +2,36 @@ import re
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import plot_functions
-# import xml_generator
-import pyperclip
-#import getPlot
-#from pcbnew import wxPoint, wxPointMM
-# import pcbnew
-# import getPlot
-#getPlot.run()
+
 class Net:
-    def __init__(self, name, wires, vias):
+    '''
+    Summary:
+        Net class stores net information for easier unpacking
+
+    Attributes:
+        name (str): Assigned name of net 
+        wire_list (list): List of wires connected to the net
+        via_list (list) : List of vias connected to the net
+    '''
+    def __init__(self, name, wire_list, via_list):
         self.name = name
-        self.wires = wires
-        self.vias = vias
+        self.wire_list = wire_list
+        self.via_list = via_list
     def __str__(self):
-        return f"{self.name}({self.wires})"
+        return f"{self.name}({self.wire_list})"
     def addWire(self, wire):
-        self.wires.append(wire)
+        self.wire_list.append(wire)
+
 class Wire:
+    '''
+    Summary:
+        Wire class stores wire information for easier unpacking
+
+    Attributes:
+        layer (str): Layer where route is located
+        width (float): Width of the wire (should be 1.6 mm)
+        coords (list) : List of critical xy coordinates of route (start, turn and/or end points)
+    '''
     def __init__(self, layer, width, coords):
         self.layer = layer
         self.width = width
@@ -26,7 +39,15 @@ class Wire:
     def __str__(self):
 	    return f"Layer: {self.layer}, Width: {self.width}, Coordinates: ({self.coords})"
 class Via:
-     def __init__(self, name, coords):
+    '''
+    Summary:
+        Via class stores via information for easier unpacking
+
+    Attributes:
+        name (str): Assigned name of via 
+        coords (tuple): xy position
+    '''
+    def __init__(self, name, coords):
         self.name = name
         self.coords = coords       
     
@@ -35,45 +56,40 @@ data = file.read()
 file.close()
 
 ## REGEX for taking information from files for nets
-net = re.compile(r'\((net \S+\s+((\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))\s+)+(\(via \S+ \d+ [\-\d]+\s+\)\s+)*)\)')
-wire = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))')
-test = re.compile(r'(\(net \"(Net-\(\S+\))\"(\s+\(wire\s+\((path (\S+) (\d+)(\s+)((\d+) (-?\d+)(\s+))+\)+)\s+\)+)+(\s+\(via ([\S ]+)\s+\))*\s+\))+')
-wire_info = re.compile(r'path (\S+) (\d+)')
-wire_xy = re.compile(r' ([-\d]+) ([-\d]+)')
-via = re.compile(r'\(via \"(.+)\" ([-\d]+) ([-\d]+)')
+wire_regex = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))')
+net_regex = re.compile(r'(\(net \"(Net-\(\S+\))\"(\s+\(wire\s+\((path (\S+) (\d+)(\s+)((\d+) (-?\d+)(\s+))+\)+)\s+\)+)+(\s+\(via ([\S ]+)\s+\))*\s+\))+')
+wire_info_regex = re.compile(r'path (\S+) (\d+)')
+wire_xy_regex = re.compile(r' ([-\d]+) ([-\d]+)')
+via_regex = re.compile(r'\(via \"(.+)\" ([-\d]+) ([-\d]+)')
 
 
-test_result = test.findall(data)
-nets = []
-classy_net = []
-for i in range(len(test_result)):
-    net_name = test_result[i][1]
-    nets.append(test_result[i][0])
-    wire_result = wire.findall(test_result[i][0])
-    via_result = via.findall(test_result[i][0])
-    classy_wires = []
+net_result = net_regex.findall(data)
+net_list = []
+
+for i in range(len(net_result)):
+    net_name = net_result[i][1]
+    wire_result = wire_regex.findall(net_result[i][0])
+    via_result = via_regex.findall(net_result[i][0])
+    wire_list = []
     for j in range(len(wire_result)):
-        info_result = wire_info.findall(wire_result[j][1])
+        info_result = wire_info_regex.findall(wire_result[j][1])
         layer, width = info_result[0]
-        xy_result = wire_xy.findall(wire_result[j][1])
-        classy_wire = Wire(layer=layer, width=width, coords=xy_result)
-        classy_wires.append(classy_wire)
-    classy_vias = [Via(result[0], (float(result[1]), float(result[2]))) for result in via_result]
-    classy_net.append(Net(net_name, classy_wires,classy_vias))
+        xy_result = wire_xy_regex.findall(wire_result[j][1])
+        wire = Wire(layer=layer, width=width, coords=xy_result)
+        wire_list.append(wire)
+    via_list = [
+         Via(
+              result[0], (float(result[1]), float(result[2]))
+              ) for result in via_result
+         ]
+    net_list.append(Net(net_name, wire_list,via_list))
 
-wires = []
-for i in range(len(nets)):
-    wire_result = wire.findall(nets[i])
-    # print(wire_result)
-    wires.append(wire_result)
-wire_result = wire.findall(nets[0])
 
 tracks = []
 
-for net in classy_net:
+for net in net_list:
     coords_list = []
-    for wire in net.wires:
-        #  print(wire)
+    for wire in net.wire_list:
             coords_list.append(wire)
     tracks.append(coords_list)
     track_count = 1
@@ -81,26 +97,27 @@ for net in classy_net:
         x = []
         y = []
         for wire in track:
-            path = [(float(x),float(y)) for (x,y) in wire.coords] ## double check units
+            path = [(float(x),float(y)) for (x,y) in wire.coords]
+            print(path)
             if(wire.layer == "F.Cu"):
                 color = 'r'
             else:
                 color = 'b'
             plot_functions.plot_Path(path, color)
-    for via in net.vias:
+    for via in net.via_list:
         plot_functions.plot_Via(via.coords)
 
 
-file2 = open(r"kicad-implementation\autorouting\sensorV2-front_copper.gbr", "r")
+file2 = open(r"kicad-files-components\sensorV2-front_copper.gbr", "r")
 data2 = file2.read()
 file2.close()
 
 pad_shape = re.compile(r'(TO\.P),(\w+).+?X([0-9\-]+)Y([0-9\-]+)', re.S)
-pads = pad_shape.findall(data2)
+pad_list = pad_shape.findall(data2)
 side = 700000
 pad_number = 1
 pad_data = []
-for pad in pads:
+for pad in pad_list:
     pad_number += 1
     shape = pad[1]
     if(shape == 'BT1'):
@@ -111,7 +128,6 @@ for pad in pads:
             width = side
             height = side
             shape = "square"
-
     x = float(pad[2])
     y = float(pad[3])
     pad_data.append((x,y,width,height,shape))

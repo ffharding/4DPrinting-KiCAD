@@ -18,7 +18,7 @@ board = pcbnew.GetBoard()
 def run(filename):
     '''
         ------------------------
-    Plots the lines of a csv file containing points in XY coordinate format.
+    Plots the lines of a csv file containing point_list in XY coordinate format.
     function run(filemame):
         filename parameter is a non encoded .csv file containing rows of x and y coordinates
     sample functional .csv file
@@ -30,16 +30,15 @@ def run(filename):
 
     ------------------------
     '''
-    points = []
-    os.chdir('C:\\Users\\Franco\\OneDrive\\Documentos\\Purdue\\Fall 2022\\Research 4D\\KiCad Files\\Organized Tests')
+    point_list = []
     with open(filename, 'r') as csvfile:
        datareader = csv.reader(csvfile)
        i = 0
        for row in datareader:
            point= wxPointMM(float(row[0]), float(row[1]))
-           points.append(point)
-           if(len(points)>=2):
-               add_line(points[i-1], points[i])
+           point_list.append(point)
+           if(len(point_list)>=2):
+               add_line(point_list[i-1], point_list[i])
            i += 1
     pcbnew.Refresh()
        

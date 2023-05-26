@@ -34,8 +34,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 1.7,
-          "width": 3.07
+          "height": 4.0,
+          "width": 4.0
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -379,7 +379,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "specctra_dsn": "SensorTemp.dsn",
+      "specctra_dsn": "../../../../../../../../Downloads/SensorTemp.dsn",
       "step": "",
       "vrml": ""
     },
