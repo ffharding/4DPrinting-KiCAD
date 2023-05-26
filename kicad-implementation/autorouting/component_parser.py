@@ -57,23 +57,10 @@ class Pad():
         self.diameter = type.diameter
         self.shape = type.shape
 
-    #     if orientation != '': self.rotate()
-    # def rotate(self):
-    #     """
-    #     Rotate the pad counterclockwise using math calculations for position
-    #     """
-    #     self.width, self.height = self.height, self.width
-    #     print(f'angle = {self.orientation}')
-    #     rad_sin = math.sin(math.radians(45 + float(self.orientation)))
-    #     rad_cos = math.cos(math.radians(45 + float(self.orientation)))
-    #     self.rel_pos = (rad_cos * self.rel_pos[0] - rad_sin * self.rel_pos[1], rad_sin * self.rel_pos[0] + rad_cos * self.rel_pos[1])
-
-        # self.true_pos = Component.self.pos + self.rel_pos   
-
 
 def getComponents(data):
 
-    ## Get pad type information (\S+)\s+(\(shape \((\w+) (\S+) ([-\d\.\s]+)\)\))
+    ## Get pad type and pad shape information 
     padtype_regex = re.compile(
         r'(\(padstack "?([^\s\"]+)"?[\s\S]*?(?=\s+\(padstack|\s+\)\s+\)))'
         )
@@ -94,22 +81,22 @@ def getComponents(data):
 
 
     ### Get component type information
-    componentType_regex = re.compile(
+    component_type_regex = re.compile(
         r'(\(image "?([^\s\"]+)"?[\s\S]*?(?=\s+\(image|\s+\)\s+\)|\s+\(padstack))'
         )
-    componentType_result = componentType_regex.findall(data)
+    component_type_result = component_type_regex.findall(data)
 
-    componentTypeOutline_regex = re.compile(r'\(outline[^\n]+')
-    componentTypePin_regex = re.compile(r'\(pin (\S+) (\(rotate ([-\d]+)\) )*(\d+) ([-\d\.]+) ([-\d\.]+)')
-    componentTypeKeepout_regex = re.compile(r'\(((keepout|via_keepout)[\s\S]*?(?=\)\)))')
+    component_type_outline_regex = re.compile(r'\(outline[^\n]+')
+    componen_type_pin_regex = re.compile(r'\(pin (\S+) (\(rotate ([-\d]+)\) )*(\d+) ([-\d\.]+) ([-\d\.]+)')
+    component_type_keepout_regex = re.compile(r'\(((keepout|via_keepout)[\s\S]*?(?=\)\)))')
 
 
     componentTypes = {}
-    for match in componentType_result:
+    for match in component_type_result:
         name = match[1]
-        outline = componentTypeOutline_regex.findall(match[0])
-        keepout = componentTypeKeepout_regex.findall(match[0])
-        pins = componentTypePin_regex.findall(match[0])
+        outline = component_type_outline_regex.findall(match[0])
+        keepout = component_type_keepout_regex.findall(match[0])
+        pins = componen_type_pin_regex.findall(match[0])
         pads = [Pad(padTypes[pin[0]], pin[3], (pin[4], pin[5]), pin[2]) for pin in pins]
         componentType = ComponentType(name, outline, keepout, pads)
         componentTypes.update({str(componentType): componentType})
