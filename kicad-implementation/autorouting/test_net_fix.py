@@ -4,7 +4,6 @@ import matplotlib.patches as mpatches
 import plot_functions
 import component_parser
 # import xml_generator
-import pyperclip
 #import getPlot
 #from pcbnew import wxPoint, wxPointMM
 # import pcbnew
@@ -36,37 +35,30 @@ data = file.read()
 file.close()
 
 ## REGEX for taking information from files for nets
-net = re.compile(r'\((net \S+\s+((\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))\s+)+(\(via \S+ \d+ [\-\d]+\s+\)\s+)*)\)')
-wire = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))')
-test = re.compile(r'(\(net \"(Net-\(\S+\))\"(\s+\(wire\s+\((path (\S+) (\d+)(\s+)((\d+) (-?\d+)(\s+))+\)+)\s+\)+)+(\s+\(via ([\S ]+)\s+\))*\s+\))+')
-wire_info = re.compile(r'path (\S+) (\d+)')
-wire_xy = re.compile(r' ([-\d]+) ([-\d]+)')
-via = re.compile(r'\(via \"(.+)\" ([-\d]+) ([-\d]+)')
+wire_regex = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))')
+net_regex = re.compile(r'(\(net \"(Net-\(\S+\))\"(\s+\(wire\s+\((path (\S+) (\d+)(\s+)((\d+) (-?\d+)(\s+))+\)+)\s+\)+)+(\s+\(via ([\S ]+)\s+\))*\s+\))+')
+wire_info_regex = re.compile(r'path (\S+) (\d+)')
+wire_xy_regex = re.compile(r' ([-\d]+) ([-\d]+)')
+via_regex = re.compile(r'\(via \"(.+)\" ([-\d]+) ([-\d]+)')
 
 
-test_result = test.findall(data)
+net_result = net_regex.findall(data)
 nets = []
 classy_net = []
-for i in range(len(test_result)):
-    net_name = test_result[i][1]
-    nets.append(test_result[i][0])
-    wire_result = wire.findall(test_result[i][0])
-    via_result = via.findall(test_result[i][0])
+for i in range(len(net_result)):
+    net_name = net_result[i][1]
+    nets.append(net_result[i][0])
+    wire_result = wire_regex.findall(net_result[i][0])
+    via_result = via_regex.findall(net_result[i][0])
     classy_wires = []
     for j in range(len(wire_result)):
-        info_result = wire_info.findall(wire_result[j][1])
+        info_result = wire_info_regex.findall(wire_result[j][1])
         layer, width = info_result[0]
-        xy_result = wire_xy.findall(wire_result[j][1])
+        xy_result = wire_xy_regex.findall(wire_result[j][1])
         classy_wire = Wire(layer=layer, width=width, coords=xy_result)
         classy_wires.append(classy_wire)
     classy_vias = [Via(result[0], (float(result[1]), float(result[2]))) for result in via_result]
     classy_net.append(Net(net_name, classy_wires,classy_vias))
-
-wires = []
-for i in range(len(nets)):
-    wire_result = wire.findall(nets[i])
-    wires.append(wire_result)
-wire_result = wire.findall(nets[0])
 
 tracks = []
 
@@ -96,7 +88,7 @@ file2.close()
 components = component_parser.getComponents(data2)
 
 for component in components:
-    print(component.pads)
+    print(component.type)
     for pad in component.pads:
         plot_functions.plot_Pad(pad, component)
 plt.show()

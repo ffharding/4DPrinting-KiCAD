@@ -61,6 +61,8 @@ def plot_Pad(pad, component):
         height, width, pad_x, pad_y   = rotate(component.orientation, height, width, pad_x, pad_y)
     pad_x, pad_y = (component_pos[0] + pad_x,component_pos[1] + pad_y)
     left, bottom = (pad_x - width/2,pad_y - height/2)
+    print('\n')
+    print(f'h {height} w {width} x {pad_x} y {pad_y}')
     rect=mpatches.Rectangle((left*10,bottom*10),width*10,height*10,
                                 fill=True,
                                 color='red',

@@ -104,14 +104,13 @@ def getComponents(data):
     componentTypeKeepout_regex = re.compile(r'\(((keepout|via_keepout)[\s\S]*?(?=\)\)))')
 
 
-    componentTypes = {} ## Dictionaries will probably be better on the long term
+    componentTypes = {}
     for match in componentType_result:
         name = match[1]
         outline = componentTypeOutline_regex.findall(match[0])
         keepout = componentTypeKeepout_regex.findall(match[0])
         pins = componentTypePin_regex.findall(match[0])
         pads = [Pad(padTypes[pin[0]], pin[3], (pin[4], pin[5]), pin[2]) for pin in pins]
-        # print(pins[0])
         componentType = ComponentType(name, outline, keepout, pads)
         componentTypes.update({str(componentType): componentType})
 
