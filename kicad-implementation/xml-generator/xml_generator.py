@@ -2,14 +2,14 @@ import os
 
 # raw_data = [[('145290000', '-83820000'), ('137947500', '-83820000'), ('163070000', '-66040000'), ('145290000', '-83820000')]], [[('163890000', '-74829000'), ('162294700', '-74829000'), ('152495000', '-84628700'), ('137181200', '-84628700'), ('162294700', '-74829000'), ('152495000', '-84628700'), ('137181200', '-84628700'), ('136372500', '-83820000')]]
 # track_data = [[[('136372500', '-83820000')]], [[('137947500', '-83820000')]], [[('162050000', '-66040000')]], [[('163070000', '-66040000')]], [[('134530000', '-74829000')]], [[('163890000', '-74829000')]], [[('144914300', '-66040000'), ('162050000', '-66040000'), ('136125300', '-74829000'), ('144914300', '-66040000'), ('134530000', '-74829000'), ('136125300', '-74829000')]], [[('145290000', '-83820000'), ('137947500', '-83820000'), ('163070000', '-66040000'), ('145290000', '-83820000')]], [[('163890000', '-74829000'), ('162294700', '-74829000'), ('152495000', '-84628700'), ('137181200', '-84628700'), ('162294700', '-74829000'), ('152495000', '-84628700'), ('137181200', '-84628700'), ('136372500', '-83820000')]]]
-# pad_data = [[[('136372500', '-83820000')]]]
+# component_data = [[[('136372500', '-83820000')]]]
 # raw_data = raw_data[0][0]
-def xml_gen(track_data, pad_data):
+def xml_gen(track_data, component_data):
     """
     Stores track and pad data in custom XML file. Missing information.
     Inputs:
         track_data: XY coordinates of tracks
-        pad_data: XY coordinates of pads
+        component_data: information of components
     Outputs:
         XML_DATA.xml: XML file with custom structure
     """
@@ -30,7 +30,7 @@ def xml_gen(track_data, pad_data):
         xml_file += "\n\t\t\t\t</track>"
     xml_file += "\n\t\t\t</wire>"
     xml_file += "\n\t\t\t<pads>"
-    for pad in pad_data:
+    for pad in component_data:
         xml_file += "\n\t\t\t\t<pad>"
         for coord in pad:
             x = coord[0]
@@ -50,5 +50,5 @@ def xml_gen(track_data, pad_data):
     file.writelines(xml_file)
     file.close()
 
-# xml_gen(track_data, pad_data)
+# xml_gen(track_data, component_data)
 

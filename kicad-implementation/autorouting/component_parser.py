@@ -7,14 +7,14 @@ class Component:
         self.side = side
         self.orientation = float(orientation)
         self.type = type
-        self.pads = type.pins
+        self.pads = type.pad_list
         
 class ComponentType:
-    def __init__(self, type, outline, keepout, pins):
+    def __init__(self, type, outline, keepout, pad_list):
         self.type = type
         self.outline = outline
         self.keepout = keepout
-        self.pins = pins
+        self.pad_list = pad_list
     def __str__(self):
         return f"{self.type}"
     
@@ -96,8 +96,8 @@ def getComponents(data):
         name = match[1]
         outline = component_type_outline_regex.findall(match[0])
         keepout = component_type_keepout_regex.findall(match[0])
-        pins = componen_type_pin_regex.findall(match[0])
-        pads = [Pad(padTypes[pin[0]], pin[3], (pin[4], pin[5]), pin[2]) for pin in pins]
+        pad_list = componen_type_pin_regex.findall(match[0])
+        pads = [Pad(padTypes[pad[0]], pad[3], (pad[4], pad[5]), pad[2]) for pad in pad_list]
         componentType = ComponentType(name, outline, keepout, pads)
         componentTypes.update({str(componentType): componentType})
 
