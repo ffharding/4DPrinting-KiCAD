@@ -49,7 +49,7 @@ class Via:
     Summary:
         Via class stores via information for easier unpacking
 
-    Attributes:3 
+    Attributes: 
         name (str): Assigned name of via 
         coords (tuple): xy position
     '''
