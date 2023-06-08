@@ -7,7 +7,7 @@ class Component:
         self.side = side
         self.orientation = float(orientation)
         self.type = type
-        self.pads = type.pad_list
+        self.pad_list = type.pad_list
         
 class ComponentType:
     def __init__(self, type, outline, keepout, pad_list):

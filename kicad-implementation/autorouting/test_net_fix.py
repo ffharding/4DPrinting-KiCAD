@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import plot_functions
 import component_parser
+import advanced_generator
 # import xml_generator
 #import getPlot
 #from pcbnew import wxPoint, wxPointMM
@@ -57,13 +58,13 @@ class Via:
         self.name = name
         self.coords = coords
 
-file = open(r"kicad-files-components\SensorTemp.ses", "r") ## EVERYTHING IS IN MICROMETERS
+file = open(r"C:\Users\Franco\OneDrive\Documentos\Purdue\Fall 2022\Research 4D\Github Repo\4DPrinting-KiCAD\kicad-files-components\SensorTemp.ses", "r") ## EVERYTHING IS IN MICROMETERS
 data = file.read()
 file.close()
 
 ## REGEX for taking information from files for nets
-wire_regex = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)\)\s+\))')
-net_regex = re.compile(r'(\(net \"(Net-\(\S+\))\"(\s+\(wire\s+\((path (\S+) (\d+)(\s+)((\d+) (-?\d+)(\s+))+\)+)\s+\)+)+(\s+\(via ([\S ]+)\s+\))*\s+\))+')
+wire_regex = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)+\)\s+(\)|\(type))') 
+net_regex = re.compile(r'(\(net "([\w\-\(\)]+)"?[\s\S]*?(?=\(net|\s+\)\s+\)\s+\)\s+\)))')
 wire_info_regex = re.compile(r'path (\S+) (\d+)')
 wire_xy_regex = re.compile(r' ([-\d]+) ([-\d]+)')
 via_regex = re.compile(r'\(via \"(.+)\" ([-\d]+) ([-\d]+)')
@@ -92,6 +93,7 @@ for i in range(len(net_result)):
     net_list.append(Net(net_name, wire_list,via_list))
 
 
+
 tracks = []
 
 for net in net_list:
@@ -105,7 +107,6 @@ for net in net_list:
         y = []
         for wire in track:
             path = [(float(x),float(y)) for (x,y) in wire.coords]
-            print(path)
             if(wire.layer == "F.Cu"):
                 color = 'r'
             else:
@@ -115,14 +116,14 @@ for net in net_list:
         plot_functions.plot_Via(via.coords)
 
      
-file2 = open(r"kicad-files-components\SensorTemp.dsn", "r") ## EVERYTHING IS IN MICROMETERS
+file2 = open(r"C:\Users\Franco\OneDrive\Documentos\Purdue\Fall 2022\Research 4D\Github Repo\4DPrinting-KiCAD\kicad-files-components\SensorTemp.dsn", "r") ## EVERYTHING IS IN MICROMETERS
 data2 = file2.read()
 file2.close()
-components = component_parser.getComponents(data2)
+component_list = component_parser.getComponents(data2)
 
-for component in components:
-    print(component.type)
-    for pad in component.pads:
+for component in component_list:
+    for pad in component.pad_list:
         plot_functions.plot_Pad(pad, component)
 plt.show()
+advanced_generator.advanced_GCODE_gen(net_list, component_list)
 
