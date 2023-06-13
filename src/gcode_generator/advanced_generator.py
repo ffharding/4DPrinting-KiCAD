@@ -1,5 +1,5 @@
 import re
-import generate_functions
+from gcode_generator import generate_functions
 def advanced_GCODE_gen(net_list, component_list):
     """
     Convert raw XY data into GCODE file that prints shape
@@ -37,20 +37,17 @@ G1 X-11.5 Y2
 G1 Z-5
 ; Set trace speed
 G1 F400"""
-
     gcode = gcode_init
-    coordinates = []
+    cur_position = (0,0)
     for net in net_list:
-        print(net.name)
+        print(f'net')
         for wire in net.wire_list:
-            gcode_result, cur_position = generate_functions.generate_net(wire.coords) ## probably will need changes
+            gcode_result, cur_position = generate_functions.generate_net(wire, cur_position) ## probably will need changes
             gcode += gcode_result
-    
     for component in component_list:
         for pad in component.pad_list:
-            # gcode_result, cur_position = generate_functions.generate_pad(pad, cur_position)
-            # gcode = gcode_result
-            pass
+            gcode_result, cur_position = generate_functions.generate_pad(pad, component, cur_position)
+            gcode += gcode_result
 
     file = open("ADVANCED_GENERATED.GCODE", "w")
     file.writelines(gcode)

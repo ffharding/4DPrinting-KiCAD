@@ -1,9 +1,9 @@
 import re
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-import plot_functions
-import component_parser
-import advanced_generator
+from kicad_to_xml import plot_functions
+from kicad_to_xml import component_parser
+from gcode_generator import advanced_generator
 # import xml_generator
 #import getPlot
 #from pcbnew import wxPoint, wxPointMM
@@ -24,8 +24,6 @@ class Net:
         self.name = name
         self.wire_list = wire_list
         self.via_list = via_list
-    def __str__(self):
-        return f"{self.name}({self.wire_list})"
     def addWire(self, wire):
         self.wire_list.append(wire)
 
@@ -58,9 +56,9 @@ class Via:
         self.name = name
         self.coords = coords
 
-file = open(r"C:\Users\Franco\OneDrive\Documentos\Purdue\Fall 2022\Research 4D\Github Repo\4DPrinting-KiCAD\kicad-files-components\SensorTemp.ses", "r") ## EVERYTHING IS IN MICROMETERS
-data = file.read()
-file.close()
+file_ses = open(r"examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.ses", "r") ## EVERYTHING IS IN MICROMETERS
+data = file_ses.read()
+file_ses.close()
 
 ## REGEX for taking information from files for nets
 wire_regex = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+)+\)\s+(\)|\(type))') 
@@ -116,14 +114,14 @@ for net in net_list:
         plot_functions.plot_Via(via.coords)
 
      
-file2 = open(r"C:\Users\Franco\OneDrive\Documentos\Purdue\Fall 2022\Research 4D\Github Repo\4DPrinting-KiCAD\kicad-files-components\SensorTemp.dsn", "r") ## EVERYTHING IS IN MICROMETERS
-data2 = file2.read()
-file2.close()
+file_dsn = open(r"examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.dsn", "r") ## EVERYTHING IS IN MICROMETERS
+data2 = file_dsn.read()
+file_dsn.close()
 component_list = component_parser.getComponents(data2)
 
 for component in component_list:
     for pad in component.pad_list:
         plot_functions.plot_Pad(pad, component)
-plt.show()
+plt.savefig('examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.png')
 advanced_generator.advanced_GCODE_gen(net_list, component_list)
 

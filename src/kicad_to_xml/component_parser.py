@@ -50,12 +50,13 @@ class Pad():
         self.number = number
         self.type = type
         self.rel_pos = (float(rel_pos[0]), float(rel_pos[1]))
-        self.orientation = orientation
+        self.orientation = float(orientation) if (orientation != '') else orientation
 
         self.width = type.width
         self.height = type.height
         self.diameter = type.diameter
         self.shape = type.shape
+        self.true_pos = None
 
 
 def getComponents(data):
