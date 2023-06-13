@@ -1,15 +1,12 @@
 ### Add one operation line at a time using the coordinates
-import pyperclip
 def generate_net(wire, cur_position):
     gcode = ''
     coordinates = wire.coords
-    print(f'coordinates = {coordinates}')
-    print(f'start = {coordinates[0]}, cur_position = {cur_position}')
+
     ## move to start of next net
     x_diff = float(coordinates[0][0]) - float(cur_position[0])
     y_diff = float(coordinates[0][1]) - float(cur_position[1])
-    print(f'{float(coordinates[0][1])} - {float(cur_position[0])}')
-    print(f'{float(coordinates[0][1])} - {float(cur_position[1])}')
+
     gcode += f'\nG1 X{x_diff/10000} Y{y_diff/10000}'
     for i in range(len(coordinates)):
         if((i+1) != len(coordinates)):
@@ -22,7 +19,7 @@ def generate_net(wire, cur_position):
             elif((y_diff != 0) and (x_diff != 0)):
                 gcode += f'\nG1 X{x_diff/10000} Y{y_diff/10000} E1'
     cur_position = coordinates[-1]
-    print(f'end = {cur_position}\n')
+
     return gcode, cur_position
 
 def generate_pad(pad, component, cur_position):

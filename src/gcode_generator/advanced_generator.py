@@ -1,4 +1,3 @@
-import re
 from gcode_generator import generate_functions
 def advanced_GCODE_gen(net_list, component_list):
     """
@@ -40,7 +39,6 @@ G1 F400"""
     gcode = gcode_init
     cur_position = (0,0)
     for net in net_list:
-        print(f'net')
         for wire in net.wire_list:
             gcode_result, cur_position = generate_functions.generate_net(wire, cur_position) ## probably will need changes
             gcode += gcode_result

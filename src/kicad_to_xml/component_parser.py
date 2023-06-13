@@ -1,5 +1,4 @@
 import re
-import math
 class Component:
     def __init__(self, id, pos, side, orientation, type):
         self.id = id

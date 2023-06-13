@@ -4,12 +4,7 @@ import matplotlib.patches as mpatches
 from kicad_to_xml import plot_functions
 from kicad_to_xml import component_parser
 from gcode_generator import advanced_generator
-# import xml_generator
-#import getPlot
-#from pcbnew import wxPoint, wxPointMM
-# import pcbnew
-# import getPlot
-#getPlot.run()
+
 class Net:
     '''
     Summary:
