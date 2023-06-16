@@ -19,6 +19,7 @@ G1 X-11.5 Y2
 G1 Z-5
 ; Set trace speed
 G1 F400
+G1 X128.49 Y-82.39
 G1 X23.77 E1
 G1 X0.4 Y-0.4 E1
 G1 Y-0.23 E1

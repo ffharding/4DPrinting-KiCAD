@@ -1,4 +1,4 @@
-(pcb "C:\Users\Franco\OneDrive\Documentos\Purdue\Fall 2022\Research 4D\Github Repo\4DPrinting-KiCAD\examples\gcode-generator\Testing Simple GCODE GEN\Test1.dsn"
+(pcb "C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/examples/gcode-generator/Testing Simple GCODE GEN/Test1.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)

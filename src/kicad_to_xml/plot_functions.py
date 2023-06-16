@@ -57,7 +57,6 @@ def plot_Pad(pad, component):
     width = pad.width
     height = pad.height
     if (component.orientation != 0):
-        print(component.orientation)
         height, width, pad_x, pad_y   = rotate(component.orientation, height, width, pad_x, pad_y)
     pad.true_pos = (component_pos[0] + pad_x,component_pos[1] + pad_y)
     left, bottom = (pad.true_pos[0] - width/2,pad.true_pos[1] - height/2)

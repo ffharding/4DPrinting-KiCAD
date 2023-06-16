@@ -1,6 +1,6 @@
 
-(session Test1.ses
-  (base_design Test1.dsn)
+(session Test1
+  (base_design Test1)
   (placement
     (resolution um 10)
     (component 4DPrinting:switch
@@ -16,15 +16,6 @@
       (host_version "(6.0.7)")
     )
     (library_out 
-      (padstack "Via[0-1]_800:400_um"
-        (shape
-          (circle F.Cu 8000 0 0)
-        )
-        (shape
-          (circle B.Cu 8000 0 0)
-        )
-        (attach off)
-      )
       (padstack "Via[0-1]_800:400_um"
         (shape
           (circle F.Cu 8000 0 0)

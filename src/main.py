@@ -4,7 +4,8 @@ import matplotlib.patches as mpatches
 from kicad_to_xml import plot_functions
 from kicad_to_xml import component_parser
 from gcode_generator import advanced_generator
-
+from autorouting import autorouter
+import os
 class Net:
     '''
     Summary:
@@ -50,8 +51,10 @@ class Via:
     def __init__(self, name, coords):
         self.name = name
         self.coords = coords
-
-file_ses = open(r"examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.ses", "r") ## EVERYTHING IS IN MICROMETERS
+dir_path = os.path.dirname(os.path.realpath(__file__))
+os.chdir(dir_path)
+filepath = autorouter.run()
+file_ses = open(f"{filepath}.ses", "r") ## EVERYTHING IS IN MICROMETERS
 data = file_ses.read()
 file_ses.close()
 
@@ -109,7 +112,7 @@ for net in net_list:
         plot_functions.plot_Via(via.coords)
 
      
-file_dsn = open(r"examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.dsn", "r") ## EVERYTHING IS IN MICROMETERS
+file_dsn = open(f"{filepath}.dsn", "r") ## EVERYTHING IS IN MICROMETERS
 data2 = file_dsn.read()
 file_dsn.close()
 component_list = component_parser.getComponents(data2)
@@ -117,6 +120,6 @@ component_list = component_parser.getComponents(data2)
 for component in component_list:
     for pad in component.pad_list:
         plot_functions.plot_Pad(pad, component)
-plt.savefig('examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.png')
-advanced_generator.advanced_GCODE_gen(net_list, component_list)
+plt.savefig(f'{filepath}.png')
+advanced_generator.advanced_GCODE_gen(filepath, net_list, component_list)
 

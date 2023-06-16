@@ -1,4 +1,4 @@
-(pcb "C:\Users\Franco\OneDrive\Documentos\Purdue\Fall 2022\Research 4D\Github Repo\4DPrinting-KiCAD\examples\gcode-generator\Testing Multiple Net GCODE GEN\Test2.dsn"
+(pcb "C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/examples/gcode-generator/Testing Multiple Net GCODE GEN/Test2.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
@@ -51,31 +51,17 @@
     )
   )
   (placement
-    (component Resistor_SMD:R_0402_1005Metric
-      (place R1 162560.000000 -66040.000000 front 0.000000 (PN 470))
-    )
     (component LED_SMD:LED_0603_1608Metric
       (place D1 137160.000000 -83820.000000 front 0.000000 (PN "2V RED"))
+    )
+    (component Resistor_SMD:R_0402_1005Metric
+      (place R1 162560.000000 -66040.000000 front 0.000000 (PN 470))
     )
     (component Battery:BatteryHolder_Keystone_1058_1x2032
       (place BT1 149210.000000 -74829.000000 front 0.000000 (PN Battery_Cell))
     )
   )
   (library
-    (image Resistor_SMD:R_0402_1005Metric
-      (outline (path signal 120  -153.641 -380  153.641 -380))
-      (outline (path signal 120  -153.641 380  153.641 380))
-      (outline (path signal 50  -930 -470  -930 470))
-      (outline (path signal 50  930 470  930 -470))
-      (outline (path signal 50  -930 470  930 470))
-      (outline (path signal 50  930 -470  -930 -470))
-      (outline (path signal 100  -525 -270  -525 270))
-      (outline (path signal 100  525 270  525 -270))
-      (outline (path signal 100  525 -270  -525 -270))
-      (outline (path signal 100  -525 270  525 270))
-      (pin Rect[T]Pad_540x640_um 1 -510 0)
-      (pin Rect[T]Pad_540x640_um 2 510 0)
-    )
     (image LED_SMD:LED_0603_1608Metric
       (outline (path signal 120  -1485 -735  800 -735))
       (outline (path signal 120  800 735  -1485 735))
@@ -91,6 +77,20 @@
       (outline (path signal 100  -500 400  -800 100))
       (pin Rect[T]Pad_875x950_um 1 -787.5 0)
       (pin Rect[T]Pad_875x950_um 2 787.5 0)
+    )
+    (image Resistor_SMD:R_0402_1005Metric
+      (outline (path signal 120  -153.641 -380  153.641 -380))
+      (outline (path signal 120  -153.641 380  153.641 380))
+      (outline (path signal 50  -930 -470  -930 470))
+      (outline (path signal 50  930 470  930 -470))
+      (outline (path signal 50  -930 470  930 470))
+      (outline (path signal 50  930 -470  -930 -470))
+      (outline (path signal 100  -525 -270  -525 270))
+      (outline (path signal 100  525 270  525 -270))
+      (outline (path signal 100  525 -270  -525 -270))
+      (outline (path signal 100  -525 270  525 270))
+      (pin Rect[T]Pad_540x640_um 1 -510 0)
+      (pin Rect[T]Pad_540x640_um 2 510 0)
     )
     (image Battery:BatteryHolder_Keystone_1058_1x2032
       (outline (path signal 120  -14310 1900  -14310 3610))
@@ -301,7 +301,7 @@
       (pins R1-1 BT1-1)
     )
     (net "Net-(D1-Pad2)"
-      (pins R1-2 D1-2)
+      (pins D1-2 R1-2)
     )
     (net "Net-(D1-Pad1)"
       (pins D1-1 BT1-2)

@@ -1,13 +1,13 @@
 
-(session Test2.ses
-  (base_design Test2.dsn)
+(session Test2
+  (base_design Test2)
   (placement
     (resolution um 10)
-    (component Resistor_SMD:R_0402_1005Metric
-      (place R1 1625600 -660400 front 0)
-    )
     (component LED_SMD:LED_0603_1608Metric
       (place D1 1371600 -838200 front 0)
+    )
+    (component Resistor_SMD:R_0402_1005Metric
+      (place R1 1625600 -660400 front 0)
     )
     (component Battery:BatteryHolder_Keystone_1058_1x2032
       (place BT1 1492100 -748290 front 0)
@@ -22,15 +22,6 @@
       (host_version "(6.0.7)")
     )
     (library_out 
-      (padstack "Via[0-1]_800:400_um"
-        (shape
-          (circle F.Cu 8000 0 0)
-        )
-        (shape
-          (circle B.Cu 8000 0 0)
-        )
-        (attach off)
-      )
       (padstack "Via[0-1]_800:400_um"
         (shape
           (circle F.Cu 8000 0 0)
@@ -56,6 +47,12 @@
       (net "Net-(D1-Pad2)"
         (wire
           (path F.Cu 2500
+            1379480 -838200
+            1379475 -838200
+          )
+        )
+        (wire
+          (path F.Cu 2500
             1630700 -660400
             1452900 -838200
             1379480 -838200
@@ -66,10 +63,38 @@
       (net "Net-(D1-Pad1)"
         (wire
           (path F.Cu 2500
+            1363725 -838200
+            1363725 -838203
+            1369113 -843591
+          )
+        )
+        (wire
+          (path F.Cu 2500
+            1369113 -843591
+            1367765 -842243
+          )
+          (type protect)
+        )
+        (wire
+          (path F.Cu 2500
+            1371725 -846202
+            1369113 -843591
+          )
+          (type protect)
+        )
+        (wire
+          (path F.Cu 2500
             1638900 -748290
             1622950 -748290
             1524950 -846287
             1371810 -846287
+            1371725 -846202
+          )
+          (type protect)
+        )
+        (wire
+          (path F.Cu 2500
+            1367765 -842243
             1363720 -838200
           )
           (type protect)
