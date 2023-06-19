@@ -6,8 +6,9 @@ def generate_net(wire, cur_position):
     ## move to start of next net
     x_diff = float(coordinates[0][0]) - float(cur_position[0])
     y_diff = float(coordinates[0][1]) - float(cur_position[1])
-
+    gcode += f'\nG1 Z2'
     gcode += f'\nG1 X{x_diff/10000} Y{y_diff/10000}'
+    gcode += f'\nG1 Z-2'
     for i in range(len(coordinates)):
         if((i+1) != len(coordinates)):
             x_diff = float(coordinates[i+1][0]) - float(coordinates[i][0])
@@ -32,8 +33,9 @@ def generate_pad(pad, component, cur_position):
     y_diff = pad.true_pos[1]*10 - float(cur_position[1])
 
     ## move to pad location, divided by 100 should print in milimiters
+    gcode += f'\nG1 Z2'
     gcode += f'\nG1 X{x_diff/10000} Y{y_diff/10000}'
-
+    gcode += f'\nG1 Z-2'
     ## start in bottom right
     gcode += f'\nG1 X{width/2} Y{-height/2} E1'
 
