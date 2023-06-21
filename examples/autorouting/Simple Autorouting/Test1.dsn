@@ -1,0 +1,74 @@
+(pcb "C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/examples/autorouting/Simple Autorouting/Test1.dsn"
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "(6.0.7)")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property
+        (index 0)
+      )
+    )
+    (layer B.Cu
+      (type signal)
+      (property
+        (index 1)
+      )
+    )
+    (boundary
+      (path pcb 0  155000 -100720  119870 -100720  119870 -79120  155000 -79120
+            155000 -100720)
+    )
+    (via "Via[0-1]_800:400_um")
+    (rule
+      (width 250)
+      (clearance 200.1)
+      (clearance 200.1 (type default_smd))
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component 4DPrinting:switch
+      (place R1 128490.000000 -90080.000000 front 90.000000 (PN R))
+    )
+  )
+  (library
+    (image 4DPrinting:switch
+      (outline (path signal 1  -5950 -4100  5950 -4100  5950 4100  -5950 4100))
+      (pin Rect[T]Pad_3540x2000_um 1 -7690 0)
+      (pin Rect[T]Pad_3540x2000_um 2 7690 0)
+      (keepout "" (polygon F.Cu 0  5950 -4100  -5950 -4100  -5950 4100  5950 4100  5950 -4100))
+      (keepout "" (polygon B.Cu 0  5950 -4100  -5950 -4100  -5950 4100  5950 4100  5950 -4100))
+    )
+    (padstack Rect[T]Pad_3540x2000_um
+      (shape (rect F.Cu -1770 -1000 1770 1000))
+      (attach off)
+    )
+    (padstack "Via[0-1]_800:400_um"
+      (shape (circle F.Cu 800))
+      (shape (circle B.Cu 800))
+      (attach off)
+    )
+  )
+  (network
+    (net "Net-(R1-Pad1)"
+      (pins R1-1 R1-2)
+    )
+    (class kicad_default
+      (circuit
+        (use_via Via[0-1]_800:400_um)
+      )
+      (rule
+        (width 250)
+        (clearance 200.1)
+      )
+    )
+  )
+  (wiring
+  )
+)

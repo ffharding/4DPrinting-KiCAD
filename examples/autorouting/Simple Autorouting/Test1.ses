@@ -1,0 +1,42 @@
+
+(session Test1
+  (base_design Test1)
+  (placement
+    (resolution um 10)
+    (component 4DPrinting:switch
+      (place R1 1284900 -900800 front 90)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "(6.0.7)")
+    )
+    (library_out 
+      (padstack "Via[0-1]_800:400_um"
+        (shape
+          (circle F.Cu 8000 0 0)
+        )
+        (shape
+          (circle B.Cu 8000 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net "Net-(R1-Pad1)"
+        (wire
+          (path F.Cu 16000
+            1284900 -823900
+            1233898 -823900
+            1233898 -977700
+            1284900 -977700
+          )
+        )
+      )
+    )
+  )
+)

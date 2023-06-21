@@ -1,6 +1,5 @@
 import pcbnew
 import csv
-import os
 from pcbnew import wxPoint, wxPointMM
 
 def add_line(start, end, layer=pcbnew.Edge_Cuts):

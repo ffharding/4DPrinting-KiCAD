@@ -1,5 +1,4 @@
 import re
-import math
 class Component:
     def __init__(self, id, pos, side, orientation, type):
         self.id = id
@@ -7,7 +6,7 @@ class Component:
         self.side = side
         self.orientation = float(orientation)
         self.type = type
-        self.pads = type.pad_list
+        self.pad_list = type.pad_list
         
 class ComponentType:
     def __init__(self, type, outline, keepout, pad_list):
@@ -50,12 +49,13 @@ class Pad():
         self.number = number
         self.type = type
         self.rel_pos = (float(rel_pos[0]), float(rel_pos[1]))
-        self.orientation = orientation
+        self.orientation = float(orientation) if (orientation != '') else orientation
 
         self.width = type.width
         self.height = type.height
         self.diameter = type.diameter
         self.shape = type.shape
+        self.true_pos = None
 
 
 def getComponents(data):
