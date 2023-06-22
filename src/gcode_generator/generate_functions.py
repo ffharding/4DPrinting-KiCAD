@@ -29,6 +29,9 @@ def generate_pad(pad, component, cur_position):
     gcode = ''
     width = (pad.height / 1000) if (abs(component.orientation) == 90) else (pad.width / 1000) ## clean this up
     height = (pad.width / 1000) if (abs(component.orientation) == 90) else (pad.height / 1000)
+
+    print(f'cure positionn = {cur_position}')
+    print(f'true pos = {pad.true_pos}')
     x_diff = pad.true_pos[0]*10 - float(cur_position[0])
     y_diff = pad.true_pos[1]*10 - float(cur_position[1])
 

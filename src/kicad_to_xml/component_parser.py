@@ -7,7 +7,16 @@ class Component:
         self.orientation = float(orientation)
         self.type = type
         self.pad_list = type.pad_list
+
+        self.fix_pad_position(self.pad_list, self.pos)
         
+    def fix_pad_position(self, pad_list, component_pos):
+        '''
+            Fixes the position of pads in component's pad_list to
+            true position instead of relative position
+        '''
+        for pad in pad_list:
+            pad.calc_true_pos(component_pos)
 class ComponentType:
     def __init__(self, type, outline, keepout, pad_list):
         self.type = type
@@ -56,6 +65,12 @@ class Pad():
         self.diameter = type.diameter
         self.shape = type.shape
         self.true_pos = None
+    def calc_true_pos(self, component_pos):
+        ''' 
+            Calculate the true position of pad using position of
+            component and relative position
+        '''
+        self.true_pos = (component_pos[0] + self.rel_pos[0], component_pos[1] + self.rel_pos[1])
 
 
 def getComponents(data):
