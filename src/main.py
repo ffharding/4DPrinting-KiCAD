@@ -1,6 +1,6 @@
 from kicad_to_xml import component_parser, net_parser
 from gcode_generator import advanced_generator
-from autorouting import autorouter
+from autorouting import autorouter, getFigures
 import os
 def start():
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -18,4 +18,5 @@ def start():
     print(f'netlist = {net_list}')
     print(f'componentlist = {component_list}')
 
+    getFigures.getFigure(filepath, net_list, component_list)
     advanced_generator.advanced_GCODE_gen(filepath, net_list, component_list)

@@ -1,4 +1,15 @@
 import re
+import math
+def rotate(orientation, x, y):
+    """
+    Rotate the pad counterclockwise using math calculations for position
+    """
+    rad_sin = math.sin(math.radians(orientation))
+    rad_cos = math.cos(math.radians(orientation))
+    x, y = (rad_cos * x - rad_sin * y, rad_sin * x + rad_cos * y)
+
+    return x, y
+
 class Component:
     def __init__(self, id, pos, side, orientation, type):
         self.id = id
@@ -8,15 +19,15 @@ class Component:
         self.type = type
         self.pad_list = type.pad_list
 
-        self.fix_pad_position(self.pad_list, self.pos)
+        self.fix_pad_position(self.pad_list, self.pos, self.orientation)
         
-    def fix_pad_position(self, pad_list, component_pos):
+    def fix_pad_position(self, pad_list, component_pos, component_orientation):
         '''
             Fixes the position of pads in component's pad_list to
             true position instead of relative position
         '''
         for pad in pad_list:
-            pad.calc_true_pos(component_pos)
+            pad.calc_true_pos(component_pos, component_orientation)
 class ComponentType:
     def __init__(self, type, outline, keepout, pad_list):
         self.type = type
@@ -65,11 +76,12 @@ class Pad():
         self.diameter = type.diameter
         self.shape = type.shape
         self.true_pos = None
-    def calc_true_pos(self, component_pos):
+    def calc_true_pos(self, component_pos, component_orientation):
         ''' 
             Calculate the true position of pad using position of
-            component and relative position
+            component and relative position, considering orientation of component as well
         '''
+        self.rel_pos = rotate(component_orientation, self.rel_pos) if (component_orientation != 0)  else self.rel_pos
         self.true_pos = (component_pos[0] + self.rel_pos[0], component_pos[1] + self.rel_pos[1])
 
 
