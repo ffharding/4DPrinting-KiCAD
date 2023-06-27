@@ -51,6 +51,9 @@
     (component 4DPrinting:wave_gen
       (place U1 113131.600000 -45923.200000 front 0.000000 (PN "Wave Gen"))
     )
+    (component 4DPrinting:charge_port
+      (place J1 186085.400000 -88960.000000 front -90.000000 (PN Barrel_Jack_Switch))
+    )
     (component 4DPrinting:custom_lf356
       (place U2 154533.600000 -56997.600000 front 0.000000 (PN LF356))
     )
@@ -59,9 +62,6 @@
     )
     (component 4DPrinting:switch
       (place SW1 175361.600000 -41656.000000 front 0.000000 (PN SW_Push))
-    )
-    (component 4DPrinting:charge_port
-      (place J1 186085.400000 -88959.300000 front -90.000000 (PN "Jack-DC"))
     )
     (component 4DPrinting:TPU::2
       (place R2 129792.000000 -64796.800000 front 0.000000 (PN TPU))
@@ -139,6 +139,12 @@
       (keepout "" (polygon B.Cu 0  -3590 6800  -1990 6800  -1990 2340  2010 2350  2010 6800
             3610 6800  3610 750  -3590 750  -3590 6800))
     )
+    (image 4DPrinting:charge_port
+      (outline (path signal 0.1  -7000 4480  7000 4480  7000 -4480  -7000 -4480))
+      (pin Rect[T]Pad_4700x2950_um (rotate 180) 1 150 -5960)
+      (pin Rect[T]Pad_4700x2950_um (rotate 180) 2 150 5950)
+      (pin Rect[T]Pad_3070x1700_um (rotate 180) 3 -8530 510)
+    )
     (image 4DPrinting:custom_lf356
       (outline (path signal 0.1  -3300 5500  3300 5500  3300 -5500  -3300 -5500))
       (pin Rect[T]Pad_3875x1600_um 1 -5177.5 3920)
@@ -199,12 +205,6 @@
       (pin Rect[T]Pad_3540x2000_um 2 7690 0)
       (keepout "" (polygon F.Cu 0  5950 -4100  -5950 -4100  -5950 4100  5950 4100  5950 -4100))
       (keepout "" (polygon B.Cu 0  5950 -4100  -5950 -4100  -5950 4100  5950 4100  5950 -4100))
-    )
-    (image 4DPrinting:charge_port
-      (outline (path signal 0.1  -7000 4480  7000 4480  7000 -4480  -7000 -4480))
-      (pin Rect[T]Pad_4700x2950_um (rotate 180) 1 150 -5960)
-      (pin Rect[T]Pad_4700x2950_um (rotate 180) 2 150 5950)
-      (pin Rect[T]Pad_3070x1700_um (rotate 180) 3 -8530 510)
     )
     (image 4DPrinting:TPU::2
       (outline (path signal 0.1  3800 3600  7800 3600))
@@ -335,7 +335,7 @@
       (pins U2-5)
     )
     (net "Net-(BT1-Pad1)"
-      (pins BT1-1 SW1-2 J1-1)
+      (pins BT1-1 J1-1 SW1-2)
     )
     (net "unconnected-(U2-Pad8)"
       (pins U2-8)
@@ -344,7 +344,7 @@
       (pins U2-6 U3-1)
     )
     (net "Net-(BT1-Pad2)"
-      (pins R3-2 U4-1 BT1-2 U1-1 U2-4 J1-2 U3-8)
+      (pins R3-2 U4-1 BT1-2 U1-1 J1-2 J1-3 U2-4 U3-8)
     )
     (net "Net-(R1-Pad2)"
       (pins U4-3 U2-7 R1-2 SW1-1 R2-2)

@@ -1,5 +1,5 @@
 from gcode_generator import generate_functions
-def advanced_GCODE_gen(filepath, net_list, component_list):
+def advanced_GCODE_gen(filepath, print_layer, net_list, component_list):
     """
     Convert raw XY data into GCODE file that prints shape
     Inputs:
@@ -40,13 +40,13 @@ G1 F400"""
     cur_position = (0,0)
     for net in net_list:
         for wire in net.wire_list:
-            gcode_result, cur_position = generate_functions.generate_net(wire, cur_position) ## probably will need changes
+            gcode_result, cur_position = generate_functions.generate_net(wire, cur_position, print_layer) ## probably will need changes
             gcode += gcode_result
     for component in component_list:
         for pad in component.pad_list:
-            gcode_result, cur_position = generate_functions.generate_pad(pad, component, cur_position)
+            gcode_result, cur_position = generate_functions.generate_pad(pad, component, cur_position, print_layer)
             gcode += gcode_result
 
-    file = open(f"{filepath}.GCODE", "w")
+    file = open(f"{filepath}_{print_layer}.GCODE", "w")
     file.writelines(gcode)
     file.close()

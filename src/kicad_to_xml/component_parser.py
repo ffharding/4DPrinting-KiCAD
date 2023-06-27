@@ -70,7 +70,8 @@ class Pad():
         self.type = type
         self.rel_pos = (float(rel_pos[0]), float(rel_pos[1]))
         self.orientation = float(orientation) if (orientation != '') else orientation
-
+        self.layer = type.layer
+        
         self.width = type.width
         self.height = type.height
         self.diameter = type.diameter
@@ -81,7 +82,7 @@ class Pad():
             Calculate the true position of pad using position of
             component and relative position, considering orientation of component as well
         '''
-        self.rel_pos = rotate(component_orientation, self.rel_pos) if (component_orientation != 0)  else self.rel_pos
+        self.rel_pos = rotate(component_orientation, self.rel_pos[0], self.rel_pos[1]) if (component_orientation != 0)  else self.rel_pos
         self.true_pos = (component_pos[0] + self.rel_pos[0], component_pos[1] + self.rel_pos[1])
 
 

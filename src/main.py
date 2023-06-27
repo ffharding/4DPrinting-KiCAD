@@ -15,8 +15,7 @@ def start():
     data2 = file_dsn.read()
     file_dsn.close()
     component_list = component_parser.getComponents(data2)
-    print(f'netlist = {net_list}')
-    print(f'componentlist = {component_list}')
 
     getFigures.getFigure(filepath, net_list, component_list)
-    advanced_generator.advanced_GCODE_gen(filepath, net_list, component_list)
+    advanced_generator.advanced_GCODE_gen(filepath, 'F.Cu', net_list, component_list)
+    advanced_generator.advanced_GCODE_gen(filepath, 'B.Cu', net_list, component_list)
