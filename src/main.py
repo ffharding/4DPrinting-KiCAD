@@ -6,6 +6,7 @@ def start():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(dir_path)
     filepath = autorouter.run()
+
     file_ses = open(f"{filepath}.ses", "r") ## EVERYTHING IS IN MICROMETERS
     data = file_ses.read()
     file_ses.close()

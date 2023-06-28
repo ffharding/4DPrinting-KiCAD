@@ -41,11 +41,17 @@ G1 F400"""
     for net in net_list:
         for wire in net.wire_list:
             gcode_result, cur_position = generate_functions.generate_net(wire, cur_position, print_layer) ## probably will need changes
+            if (wire.layer == print_layer):
+                gcode += gcode_result
+        for via in net.via_list:
+            ## vias will be printed on both layers
+            gcode_result, cur_position = generate_functions.generate_via(via, cur_position)
             gcode += gcode_result
     for component in component_list:
         for pad in component.pad_list:
             gcode_result, cur_position = generate_functions.generate_pad(pad, component, cur_position, print_layer)
-            gcode += gcode_result
+            if (pad.layer == print_layer):
+                gcode += gcode_result
 
     file = open(f"{filepath}_{print_layer}.GCODE", "w")
     file.writelines(gcode)

@@ -10,10 +10,7 @@ def getFigure(filepath, net_list, component_list):
         for wire in net.wire_list:
                 coords_list.append(wire)
         tracks.append(coords_list)
-        track_count = 1
         for track in tracks:
-            x = []
-            y = []
             for wire in track:
                 path = [(float(x),float(y)) for (x,y) in wire.coords]
                 if(wire.layer == "F.Cu"):
