@@ -1,0 +1,11 @@
+Sn is the speed at which unprime moves should be executed; this is normally 10,000
+ En is the number of pulses on the feed (extrusion) motor to execute; this varies greatly among materials
+ Pn is the number of milliseconds relative to the end of the move to begin the unprime (retract) action; a negative number initiates this before the end of the move
+ T# is the target head
+ In is the flag for executing an Immediate action; so M721 I1 would execute an unprime with the previously specified values at that point in the gcode.
+
+Pn is the number of pulses on the motor to dispense 1 μl (for volumetric) or 1 mm (for linear) of material;
+ Sn is the direct flow multiplier (to allow for undersized or oversized stock;
+ Wn is the width of the cross section of the volume to fill;
+ Zn is the height (layer thickness) of the cross section of the volume to fill; and
+ T# is the tool (head) to which these values will be applied. 
