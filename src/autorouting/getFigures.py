@@ -1,8 +1,16 @@
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 from autorouting import plot_functions
 
 def getFigure(filepath, net_list, component_list):
+    """
+    Helper function that generates image of expected routing with pads
+    Inputs:
+        filepath (str) : filepath of the generated image
+        net_list (list) : list containing Net objects with net information
+        component_list (list) : list containing Component objects with component information
+    Outputs:
+        image (png) : png generated
+    """
     tracks = []
 
     for net in net_list:

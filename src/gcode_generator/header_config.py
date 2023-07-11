@@ -1,7 +1,22 @@
 import xml.etree.ElementTree as ET
 class extruder_head():
     '''
-        Head extruder class
+    Summary:
+        extruder_head class stores head information parser from xml config file
+
+    Attributes:
+        name (str): Assigned name of net 
+        yoke (str): mounting device
+        slot (str) : header slot
+        target_head (str) : identifier for chosen head
+        head_offset (dict) : dictionary containg XYZ coordinates of head offset
+        retraction_speed (str) : speed at which unprime moves should be executed; this is normally 10,000
+        motor_steps (str) : number of pulses on the feed (extrusion) motor to execute
+        retract_delay (str) : number of milliseconds relative to the end of the move to begin the unprime (retract) action; a negative
+        syringe_parameter (str) : syringe needle setup parameter (M221 by specification as of 7/7/2023)
+        homing_sequence (str) : sequence setting up relative origin for coordinates
+        cleareance (str) : height clearance for movement
+        trace_speed (str) : speed of trace movements whlie prining
     '''
     def __init__(self, config_xml_path):
         config_tree = ET.parse(config_xml_path)
@@ -9,14 +24,19 @@ class extruder_head():
         self.parse_params(*config_root)
 
     def parse_params(self, head_init, retraction_settings, syringe_setup, homing_sequence, init_sequence, trace_setup):
+        """
+        Converts XML XYZ head offset in to a dictionary with coordinates
+        Inputs:
+            *config_root : unpacked list of xml root object containg head config information
+        """
         self.yoke = head_init.find('yoke').text
         self.slot = head_init.find('slot').text
         self.target_head = f'{self.yoke}{self.slot}'
         self.head_offset = self.get_headoffset(head_init)
 
-        self.retraction_speed = retraction_settings.find('retraction_speed').text ## speed at which unprime moves should be executed; this is normally 10,000
-        self.motor_steps = retraction_settings.find('motor_steps').text  ## number of pulses on the feed (extrusion) motor to execute;
-        self.retract_delay = retraction_settings.find('retract_delay').text ## number of milliseconds relative to the end of the move to begin the unprime (retract) action; a negative number initiates this before the end of the move
+        self.retraction_speed = retraction_settings.find('retraction_speed').text 
+        self.motor_steps = retraction_settings.find('motor_steps').text  #
+        self.retract_delay = retraction_settings.find('retract_delay').text
 
         self.syringe_parameter = syringe_setup.find('syringe_parameter').text
 
@@ -27,13 +47,16 @@ class extruder_head():
         self.trace_speed = trace_setup.find('trace_speed').text
 
 
-    def get_headoffset(self, head_innit):
-        '''
-            (head_innit --> XML root of head initialization)
-            Converts XML XYZ head offset in to a dictionary with coordinates
-        '''
+    def get_headoffset(self, head_init):
+        """
+        Converts XML XYZ head offset in to a dictionary with coordinates
+        Inputs:
+            head_init: xml root object containing head initialization branch
+        Outputs:
+            ADVANCED_GENERATED.GCODE: GCODE file
+        """
         head_offset_dict = {}
-        for coord in head_innit.find('head_offset'):
+        for coord in head_init.find('head_offset'):
             head_offset_dict[coord.tag] = coord.text
         return head_offset_dict
 
@@ -41,7 +64,15 @@ def initialize_GCODE(extrusion_head):
     '''
         Initialize GCODE with specified extrusion head
     '''
-    head = extruder_head(f'src\config\{extrusion_head}_config.xml')
+    """
+    Initialize GCODE with specified extrusion head
+    Inputs:
+        extrusion_head: extrusion head name (make sure that matches config file)
+    Outputs:
+        gcode_init: GCODE initialization header
+    """
+    head = extruder_head(f'config\{extrusion_head}_config.xml')
+    
     head_init = f"""G90  ;Change to absolute coordinates
 T{head.target_head}  ;The following settings will apply to the head on T15
 M756 S0.1  ;Used in further calculations (0.1mm layer height)"""

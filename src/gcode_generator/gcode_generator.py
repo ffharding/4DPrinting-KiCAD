@@ -1,20 +1,23 @@
 from gcode_generator import generate_functions
-def advanced_GCODE_gen(filepath, print_layer, net_list, component_list, gcode_header):
+def GCODE_gen(filepath, print_layer, net_list, component_list, gcode_header):
     """
-    Convert raw XY data into GCODE file that prints shape
+    Handle generation of front and back GCODE files using parsed net and components information
     Inputs:
-        raw: XY coordinates of points in shape outline
+        filepath (str): directory where GCODE files are to be saved
+        print_layer (str) : layer of PCB GCODE that function will generate
+        net_list (list) : list containing net objects
+        component_list (list) : list containing component objects
+        gcode_header (str) : header of GCODE file imported from extruder head config file
     Outputs:
-        ADVANCED_GENERATED.GCODE: GCODE file
+        .GCODE file : Generated GCODE file in specified directory
     """
 
     ### Header for GCODE
-    # gcode = gcode_init.initialize_GCODE()
     gcode = gcode_header
     cur_position = (0,0)
     for net in net_list:
         for wire in net.wire_list:
-            gcode_result, cur_position = generate_functions.generate_net(wire, cur_position, print_layer) ## probably will need changes
+            gcode_result, cur_position = generate_functions.generate_wire(wire, cur_position, print_layer) ## probably will need changes
             if (wire.layer == print_layer):
                 gcode += gcode_result
         for via in net.via_list:
