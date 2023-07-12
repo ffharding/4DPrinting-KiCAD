@@ -46,6 +46,13 @@ class Via:
         self.coords = coords
 
 def get_nets(data):
+    """
+    Parses data from Specctra Session (.ses) file into a list of nets containing routing information
+    Inputs:
+        data (str): Specctra Session file data
+    Outputs:
+        net_list (list): list of nets parsed into Net user classes
+    """
     ## REGEX for taking information from files for nets
     wire_regex = re.compile(r'(\(wire\s+\(([\s\d\w\.\-]+))') 
     net_regex = re.compile(r'(\(net "([\w\-\(\)]+)"?[\s\S]*?(?=\(net|\s+\)\s+\)\s+\)\s+\)))')

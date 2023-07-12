@@ -10,10 +10,12 @@ M229 E0 D0  ;Doesn't use custom E values
 G28 X0 Y0  ;Send the printer head to the physical home
 G92 X0 Y0  ;Reset coordinates
 G1 X0 Y0 F2400  ;Go to these coordinates at speed 2400 mm/min
-G1 Z2  ;Go to height of 2 mm
+G1 Z0  ;Go to height of 0 mm
 G91  ;Change to relative coordinates
 ; Move to initial position
+G1 Z2 ;Print surface height 2 mm
 G1 Z5
+M6 T15 O1 X0 Y0 Z0 I1 ;Move to declared offset position now
 G1 X277.5 Y84.5
 G1 X-11.5 Y2
 G1 Z-5

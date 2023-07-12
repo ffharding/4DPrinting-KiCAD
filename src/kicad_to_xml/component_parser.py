@@ -3,6 +3,13 @@ import math
 def rotate(orientation, x, y):
     """
     Rotate the pad counterclockwise using math calculations for position
+    Inputs:
+        orientation (int): angle at which point needs to be rotated to relative to origin
+        x (int) : x coordinate of point
+        y (int) : y coordinate of point
+    Outputs:
+        x (int) : x coordinate of rotated point
+        y (int) : y coordinate of rotated point
     """
     rad_sin = math.sin(math.radians(orientation))
     rad_cos = math.cos(math.radians(orientation))
@@ -11,6 +18,18 @@ def rotate(orientation, x, y):
     return x, y
 
 class Component:
+    '''
+    Summary:
+        Component class stores component information for easier unpacking
+
+    Attributes:
+        id (str): Assigned name of component
+        pos (tuple): XY position of component relative to board origin
+        side (str) : side at which the component is placed
+        orientation (float) : orientation at whcih the component is placed
+        type (ComponentType) : user defined class containing component type information
+        pad_list (list) : list of Pad objects imported from component type
+    '''
     def __init__(self, id, pos, side, orientation, type):
         self.id = id
         self.pos = pos
@@ -29,6 +48,16 @@ class Component:
         for pad in pad_list:
             pad.calc_true_pos(component_pos, component_orientation)
 class ComponentType:
+    '''
+    Summary:
+        Component type stores global component information
+
+    Attributes:
+        type (str): name of component type
+        outline (str): information of component outline (drawing)
+        keepout (str) : component routing keepout limits
+        pad_list (list) : list of Pad objects to the corresponding components
+    '''
     def __init__(self, type, outline, keepout, pad_list):
         self.type = type
         self.outline = outline
@@ -38,6 +67,16 @@ class ComponentType:
         return f"{self.type}"
     
 class PadType:
+    '''
+    Summary:
+        Pad type stores global pad information
+
+    Attributes:
+        type (str): name of pad type
+        shape (str): name of pad shape
+        layer (str) : layer where the pad is placed
+        shapeData (list) : important measurements for pad printing(width/height or diameter)
+    '''
     def __init__(self, type, shape, layer, shapeData):
         self.type = type
         self.shape = shape
@@ -64,7 +103,24 @@ class PadType:
         elif shape == 'circle':
             self.diameter = float(shapeData[0])
     
-class Pad():
+class Pad:
+    '''
+    Summary:
+        Pad class containing individual pad information
+
+    Attributes:
+        number (int) : reference number of pad relative to component pin number
+        type (PadType) : PadType object containing general pad information 
+        rel_pos (tuplke) : pad position relative to component
+        orientation (float) : pad orientation relative to default component orientation
+        layer (str) : layer where the pad is placed (imported from PadType)
+        width (float) : horizontal width of pad (imported from PadType)
+        height (float) : vertical height of pad (imported from PadType)
+        diameter (float) : diameter of pad (imported from PadType)
+        shape (str) : shape of pad (imported from PadType)
+        true_pos (tuple) : true position of the pad relative to the board 
+
+    '''
     def __init__(self, type, number, rel_pos,orientation = 0):
         self.number = number
         self.type = type
@@ -87,7 +143,13 @@ class Pad():
 
 
 def getComponents(data):
-
+    """
+    Parses data from Specctra DSN file into a list of components containing routing information
+    Inputs:
+        data (str): Specctra DSN file data
+    Outputs:
+        component_list (list): list of components parsed into Component user classes
+    """
     ## Get pad type and pad shape information 
     padtype_regex = re.compile(
         r'(\(padstack "?([^\s\"]+)"?[\s\S]*?(?=\s+\(padstack|\s+\)\s+\)))'
@@ -125,7 +187,7 @@ def getComponents(data):
         outline = component_type_outline_regex.findall(match[0])
         keepout = component_type_keepout_regex.findall(match[0])
         pad_list = componen_type_pin_regex.findall(match[0])
-        pads = [Pad(padTypes[pad[0]], pad[3], (pad[4], pad[5]), pad[2]) for pad in pad_list]
+        pads = [Pad(padTypes[pad[0]], int(pad[3]), (pad[4], pad[5]), pad[2]) for pad in pad_list]
         componentType = ComponentType(name, outline, keepout, pads)
         componentTypes.update({str(componentType): componentType})
 
@@ -136,7 +198,7 @@ def getComponents(data):
     components_results = components_regex.findall(data)       
 
     ## Complete component and pad information
-    components = []
+    component_list = []
     component_regex = re.compile(
         r'\(place (\S+) ([\d\.-]+) ([\d\.-]+) (\w+) ([\d\.-]+)'
         )
@@ -147,6 +209,6 @@ def getComponents(data):
             temp = list(component)
             componentType = componentTypes[match[1]]
             classy_component = Component(temp[0], (float(temp[1]), float(temp[2])), temp[3], float(temp[4]), componentType)
-            components.append(classy_component)
+            component_list.append(classy_component)
 
-    return components
+    return component_list

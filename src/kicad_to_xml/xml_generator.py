@@ -1,5 +1,3 @@
-import os
-
 def xml_gen(track_data, component_data):
     """
     Stores track and pad data in custom XML file. Missing information.
