@@ -3,7 +3,7 @@
     (string_quote ")
     (space_in_quoted_tokens on)
     (host_cad "KiCad's Pcbnew")
-    (host_version "(6.0.7)")
+    (host_version "(6.0.10)")
   )
   (resolution um 10)
   (unit um)

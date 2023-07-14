@@ -40,7 +40,7 @@
     (resolution um 10)
     (parser
       (host_cad "KiCad's Pcbnew")
-      (host_version "(6.0.7)")
+      (host_version "(6.0.10)")
     )
     (library_out 
       (padstack "Via[0-1]_800:400_um"
