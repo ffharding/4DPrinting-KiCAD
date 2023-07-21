@@ -29,7 +29,7 @@
   (zone (net 0) (net_name "") (layers "F.Cu" "F.SilkS") (tstamp c287ed1c-2e5d-476e-9beb-c57fedc61a51) (hatch edge 0.508)
     (connect_pads (clearance 0))
     (min_thickness 0.254)
-    (keepout (tracks not_allowed) (vias not_allowed) (pads not_allowed) (copperpour allowed) (footprints allowed))
+    (keepout (tracks not_allowed) (vias not_allowed) (pads allowed) (copperpour allowed) (footprints allowed))
     (fill (thermal_gap 0.508) (thermal_bridge_width 0.508))
     (polygon
       (pts

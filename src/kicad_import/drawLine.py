@@ -10,7 +10,7 @@ def add_line(start, end, layer=pcbnew.Edge_Cuts):
     segment.SetEnd(end)
     segment.SetLayer(layer)
     segment.SetWidth(int(0.1 * pcbnew.IU_PER_MM))
-    board.Add(segment)
+    board.Add(segment) 
 
 board = pcbnew.GetBoard()
 

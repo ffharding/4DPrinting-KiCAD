@@ -161,7 +161,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "specctra_dsn": "",
+      "specctra_dsn": "ComplexDesignTest.dsn",
       "step": "",
       "vrml": ""
     },

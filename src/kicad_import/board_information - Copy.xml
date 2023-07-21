@@ -2,7 +2,7 @@
 <components>
     <component name="wave_gen">
         <ref>U1</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>113.1316</X>
             <Y>45.9232</Y>
@@ -11,7 +11,7 @@
     </component>
     <component name="TPU">
         <ref>R1</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>129.792</X>
             <Y>49.7968</Y>
@@ -20,7 +20,7 @@
     </component>
     <component name="TPU">
         <ref>R2</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>129.792</X>
             <Y>64.7968</Y>
@@ -29,7 +29,7 @@
     </component>
     <component name="TPU">
         <ref>R3</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>129.792</X>
             <Y>79.7968</Y>
@@ -38,7 +38,7 @@
     </component>  
     <component name="custom_lf356">
         <ref>U2</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>154.5336</X>
             <Y>56.9976</Y>
@@ -47,7 +47,7 @@
     </component>
     <component name="switch">
         <ref>SW1</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>175.3616</X>
             <Y>41.656</Y>
@@ -56,7 +56,7 @@
     </component>
     <component name="voltage_regulator">
         <ref>U4</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>179.3748</X>
             <Y>57.0484</Y>
@@ -65,7 +65,7 @@
     </component>
     <component name="MODULE_ESP-M2">
         <ref>U3</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>163.8353</X>
             <Y>77.6224</Y>
@@ -74,7 +74,7 @@
     </component>
     <component name="charge_port">
         <ref>J1</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>186.0854</X>
             <Y>88.96</Y>
@@ -83,7 +83,7 @@
     </component>
     <component name="Battery">
         <ref>BT1</ref>
-        <path>4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
+        <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
         <position>
             <X>200.9648</X>
             <Y>69.1388</Y>
