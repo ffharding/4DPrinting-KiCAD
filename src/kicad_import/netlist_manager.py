@@ -20,6 +20,13 @@ class Node():
 
 ### Get nets from netlist file using regex, create NET class inmediatly
 def import_netlist(board):
+    '''
+        Imports net information from netlist file and converts it to Net objects compatible with PCBNEW
+        Input:
+            board (BOARD) : BOARD object from pcbnew with current board information
+        Output:
+            net_list (list) : list of Net objects
+    '''
     netlist_raw = open(r'kicad_import\Test3.net', 'r')
     netlist_data = netlist_raw.read()
     netlist_raw.close()

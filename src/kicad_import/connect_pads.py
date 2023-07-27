@@ -5,7 +5,6 @@ def netlist_connect(component, net_list):
         Summary:
             Check reference of nodes in each net and connect pads to net if necessary
     '''
-    pad_count = component.GetPadCount
     component_ref = component.GetReference()
     for net in net_list:
         for node in net.node_list:

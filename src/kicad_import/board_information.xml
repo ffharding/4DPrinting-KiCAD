@@ -5,91 +5,91 @@
             <ref>U1</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>113.1316</X>
-                <Y>45.9232</Y>
+                <X>12.85</X>
+                <Y>-4</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="TPU">
             <ref>R1</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>129.792</X>
-                <Y>49.7968</Y>
+                <X>10</X>
+                <Y>-20</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="TPU">
             <ref>R2</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>129.792</X>
-                <Y>64.7968</Y>
+                <X>25</X>
+                <Y>-20</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="TPU">
             <ref>R3</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>129.792</X>
-                <Y>79.7968</Y>
+                <X>40</X>
+                <Y>-20</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>  
         <component name="custom_lf356">
             <ref>U2</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>154.5336</X>
-                <Y>56.9976</Y>
+                <X>20.0152</X>
+                <Y>-46.3296</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="switch">
             <ref>SW1</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>175.3616</X>
-                <Y>41.656</Y>
+                <X>4.6736</X>
+                <Y>-67.1576</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="voltage_regulator">
             <ref>U4</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>179.3748</X>
-                <Y>57.0484</Y>
+                <X>17.99</X>
+                <Y>-71.23</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="MODULE_ESP-M2">
             <ref>U3</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>163.8353</X>
-                <Y>77.6224</Y>
+                <X>43.0776</X>
+                <Y>-56.896</Y>
             </position>
-            <orientation>0</orientation>
+            <orientation>90</orientation>
         </component>
         <component name="charge_port">
             <ref>J1</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>186.0854</X>
-                <Y>88.96</Y>
+                <X>46.67</X>
+                <Y>-76.39</Y>
             </position>
-            <orientation>-90</orientation>
+            <orientation>0</orientation>
         </component>
         <component name="Battery">
             <ref>BT1</ref>
             <path>C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/kicad-files-components/4DPrinting.pretty</path>
             <position>
-                <X>200.9648</X>
-                <Y>69.1388</Y>
+                <X>32.25</X>
+                <Y>-94.67</Y>
             </position>
-            <orientation>180</orientation>
+            <orientation>-90</orientation>
         </component> 
     </components>
     <keepouts>
@@ -97,24 +97,20 @@
             <layer>F.Cu</layer>
             <points>
                 <point>
-                    <X>134.264</X>
-                    <Y>-62.0776</Y>
+                    <X>13</X>
+                    <Y>24</Y>
                 </point>
                 <point>
-                    <X>125.374</X>
-                    <Y>-62.2808</Y>
+                    <X>23</X>
+                    <Y>24</Y>
                 </point>
                 <point>
-                    <X>125.222</X>
-                    <Y>-52.7812</Y>
+                    <X>23</X>
+                    <Y>14</Y>
                 </point>
                 <point>
-                    <X>134.163</X>
-                    <Y>-52.6288</Y>
-                </point>
-                <point>
-                    <X>134.264</X>
-                    <Y>-62.0776</Y>
+                    <X>13</X>
+                    <Y>14</Y>
                 </point>
             </points>
         </keepout>
@@ -122,24 +118,20 @@
             <layer>B.Cu</layer>
             <points>
                 <point>
-                    <X>134.264</X>
-                    <Y>-62.0776</Y>
+                    <X>13</X>
+                    <Y>24</Y>
                 </point>
                 <point>
-                    <X>125.374</X>
-                    <Y>-62.2808</Y>
+                    <X>23</X>
+                    <Y>24</Y>
                 </point>
                 <point>
-                    <X>125.222</X>
-                    <Y>-52.7812</Y>
+                    <X>23</X>
+                    <Y>14</Y>
                 </point>
                 <point>
-                    <X>134.163</X>
-                    <Y>-52.6288</Y>
-                </point>
-                <point>
-                    <X>134.264</X>
-                    <Y>-62.0776</Y>
+                    <X>13</X>
+                    <Y>14</Y>
                 </point>
             </points>
         </keepout>
@@ -147,26 +139,40 @@
             <layer>B.Cu</layer>
             <points>
                 <point>
-                    <X>141.036</X>
-                    <Y>-85.316</Y>
+                    <X>28</X>
+                    <Y>10</Y>
                 </point>
                 <point>
-                    <X>119.750</X>
-                    <Y>-85.0112</Y>
+                    <X>28</X>
+                    <Y>30</Y>
                 </point>
                 <point>
-                    <X>119.598</X>
-                    <Y>-64.7928</Y>
+                    <X>48</X>
+                    <Y>30</Y>
                 </point>
                 <point>
-                    <X>140.782</X>
-                    <Y>-64.6404</Y>
-                </point>
-                <point>
-                    <X>141.036</X>
-                    <Y>-85.316</Y>
+                    <X>48</X>
+                    <Y>10</Y>
                 </point>
             </points>
         </keepout>
     </keepouts>
+    <vias>
+        <via>
+            <netcode>1</netcode>
+            <position>
+                <X>4</X>
+                <Y>-32.996</Y>
+            </position>
+            <diameter>0.8</diameter>
+        </via>
+        <via>
+            <netcode>1</netcode>
+            <position>
+                <X>16</X>
+                <Y>-32.996</Y>
+            </position>
+            <diameter>0.8</diameter>
+        </via>
+    </vias>
 </board>

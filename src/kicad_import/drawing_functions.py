@@ -26,6 +26,8 @@ def add_rectangle(board, start, end, trace_width, layer):
             end (tuple) : lower right corner of the rectangle
             trace_width (float) : width of sides (trace of drawing)
             layer (str) : valid string name of a kicad layer (default to Edge.Cuts)
+        Output:
+            rect (pcbnew.SHAPE_T_RECT) : rectangle shape as a pcbnew SHAPE object
     '''
     rect = pcbnew.PCB_SHAPE(board)
     rect.SetShape(pcbnew.SHAPE_T_RECT)
@@ -37,6 +39,15 @@ def add_rectangle(board, start, end, trace_width, layer):
     return rect
 
 def draw_keepout(board, points, layer):
+    '''
+        Adds rectangle to board.
+        Inputs:
+            board (BOARD) : BOARD object from pcbnew with current board information
+            points (list) : list of points necessary to draw keepout
+            layer (str) : valid string name of a kicad layer
+        Output:
+            new_area (pcbnew.ZONE) : generated keepout zone
+    '''
     new_area = pcbnew.ZONE(board)
     vector = pcbnew.wxPoint_Vector(0)
     for point in points:

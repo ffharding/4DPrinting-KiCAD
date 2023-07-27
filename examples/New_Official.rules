@@ -1,0 +1,78 @@
+
+(rules PCB New_Official
+  (snap_angle 
+    ninety_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias off)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 210)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.7)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.6)
+    )
+  )
+  (rule
+    (width 1600.0)
+    (clear 200.0)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd-smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (class default
+    "Net-(R1-Pad1)" "Net-(R2-Pad1)" "unconnected-(U2-Pad1)" "unconnected-(U2-Pad5)" "Net-(BT1-Pad1)" "unconnected-(U2-Pad8)" "Net-(U2-Pad6)" "Net-(BT1-Pad2)"
+    "Net-(R1-Pad2)" "unconnected-(U3-Pad2)" "unconnected-(U3-Pad3)" "unconnected-(U3-Pad4)" "unconnected-(U3-Pad5)" "unconnected-(U3-Pad6)" "unconnected-(U3-Pad9)" "unconnected-(U3-Pad10)"
+    "unconnected-(U3-Pad11)" "unconnected-(U3-Pad12)" "unconnected-(U3-Pad13)" "unconnected-(U3-Pad14)" "unconnected-(U3-Pad15)" "unconnected-(U3-Pad16)" "Net-(U3-Pad7)"
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 1600.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 1600.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

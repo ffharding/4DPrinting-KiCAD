@@ -13,6 +13,7 @@ def import_components():
     footprint_root = footprint_tree.getroot()
     components = footprint_root.find('components')
     keepouts = footprint_root.find('keepouts')
+    vias = footprint_root.find('vias')
     ## Get Board and Add footprint to board
     board = pcbnew.GetBoard()
 
@@ -34,7 +35,11 @@ def import_components():
         new_area = drawing_functions.draw_keepout(board, points, layer)
         board.Add(new_area)
     
-    edge_cuts = drawing_functions.add_rectangle(board, (108.204,36.9824), (208.204, 96.9824), 0.1, 'Edge.Cuts')
+    for via in vias:
+        x, y = via.find('position')
+        via = footprint_functions.addVia(board, (float(x.text), float(y.text)), float(via.find('diameter').text), int(via.find('netcode').text) )
+        board.Add(via)
+    edge_cuts = drawing_functions.add_rectangle(board, (0,0), (60, -100), 0.1, 'Edge.Cuts')
     board.Add(edge_cuts)
     pcbnew.Refresh()
 

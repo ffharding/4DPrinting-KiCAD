@@ -6,7 +6,7 @@
     (fanout off)
     (autoroute on)
     (postroute on)
-    (vias on)
+    (vias off)
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
