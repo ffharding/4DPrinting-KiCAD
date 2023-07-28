@@ -210,4 +210,5 @@ def getComponents(data):
             componentType = componentTypes[match[1]]
             classy_component = Component(temp[0], (float(temp[1]), float(temp[2])), temp[3], float(temp[4]), componentType)
             component_list.append(classy_component)
+
     return component_list

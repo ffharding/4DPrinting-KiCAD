@@ -18,7 +18,6 @@ def start():
     component_list = component_parser.getComponents(data2)
 
     # getFigures.getFigure(filepath, net_list, component_list)
-    gcode_header_front, extrusion_head = header_config.initialize_GCODE('silver_head', 'F.Cu')
-    gcode_header_back, extrusion_head = header_config.initialize_GCODE('silver_head', 'B.Cu')
-    gcode_generator.GCODE_gen(filepath, 'F.Cu', net_list, component_list, gcode_header_front, extrusion_head)
-    gcode_generator.GCODE_gen(filepath, 'B.Cu', net_list, component_list, gcode_header_back, extrusion_head)
+    gcode_header = header_config.initialize_GCODE('silver_head')
+    gcode_generator.GCODE_gen(filepath, 'F.Cu', net_list, component_list, gcode_header)
+    gcode_generator.GCODE_gen(filepath, 'B.Cu', net_list, component_list, gcode_header)

@@ -23,6 +23,6 @@
         <clearance>5</clearance>
     </init_sequence>
     <trace_setup>
-        <trace_speed>100</trace_speed>
+        <trace_speed>400</trace_speed>
     </trace_setup>
 </gcode_configuration>

@@ -60,7 +60,7 @@ class extruder_head():
             head_offset_dict[coord.tag] = coord.text
         return head_offset_dict
 
-def initialize_GCODE(extrusion_head, print_layer):
+def initialize_GCODE(extrusion_head):
     '''
         Initialize GCODE with specified extrusion head
     '''
@@ -86,26 +86,23 @@ M722 S{head.retraction_speed} E{head.motor_steps} P{head.retract_delay} T{head.t
 M82  ;Absolute E values
 M229 E0 D0  ;Doesn't use custom E values"""
     
-    print_surface = 2 if (print_layer == 'F.Cu') else 0.62
-    homing_sequence = f"""G28 X0 Y0  ;Send the printer head to the physical home
+    homing_sequence = """G28 X0 Y0  ;Send the printer head to the physical home
 G92 X0 Y0  ;Reset coordinates
 G1 X0 Y0 F2400  ;Go to these coordinates at speed 2400 mm/min
-G1 Z{print_surface} ;Print surface height 2 mm
+G1 Z0  ;Go to height of 0 mm
 G91  ;Change to relative coordinates"""
 
-    center_coords = {'X' : str(120), 'Y' : str(150)} ## center coordinates for printed part
-    bottom_left_coords = {'X' : str(-30), 'Y' : str(-89.425)}
     init_sequence = f"""; Move to initial position
+G1 Z2 ;Print surface height 2 mm
 G1 Z{head.clearance}
-G1 X{center_coords['X']} Y{center_coords['Y']} ; Center
 M6 T15 O1 X0 Y0 Z0 I1 ;Move to declared offset position now
-G1 X{bottom_left_coords['X']} Y{bottom_left_coords['Y']} ; Bottom left for KiCAD
-G1 Z-{head.clearance}
-;M0"""
+G1 X277.5 Y84.5
+G1 X-11.5 Y2
+G1 Z-{head.clearance}"""
     
     trace_setup = f"""; Set trace speed
 G1 F{head.trace_speed}"""
 
     gcode_init = f'{head_init}\n{head_offset_declaration}\n{retraction_settings}\n{syringe_setup}\n{homing_sequence}\n{init_sequence}\n{trace_setup}'
     
-    return gcode_init, head
+    return gcode_init

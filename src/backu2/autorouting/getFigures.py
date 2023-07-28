@@ -31,5 +31,4 @@ def getFigure(filepath, net_list, component_list):
     for component in component_list:
         for pad in component.pad_list:
             plot_functions.plot_Pad(pad, component)
-            print(pad.number, pad.true_pos)
     plt.savefig(f'{filepath}.png')

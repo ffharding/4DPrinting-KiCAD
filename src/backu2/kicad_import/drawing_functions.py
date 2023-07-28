@@ -57,5 +57,4 @@ def draw_keepout(board, points, layer):
     new_area.SetIsRuleArea(True)
     new_area.SetDoNotAllowTracks(True)
     new_area.SetDoNotAllowPads(False)
-    # new_area.SetDoNotAllowVias(False)
     return new_area

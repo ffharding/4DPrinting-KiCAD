@@ -1,0 +1,63 @@
+
+(session New_Official
+  (base_design New_Official)
+  (placement
+    (resolution um 10)
+    (component Battery
+      (place BT1 277500 53300 front 90)
+    )
+    (component charge_port
+      (place J1 133300 236100 front 180)
+    )
+    (component "MODULE_ESP-M2"
+      (place U3 169224 431040 front 270)
+    )
+    (component voltage_regulator
+      (place U4 420100 287700 front 270)
+    )
+    (component switch
+      (place SW1 553264 328424 front 270)
+    )
+    (component custom_lf356
+      (place U2 399848 536704 front 270)
+    )
+    (component TPU
+      (place R3 200000 800000 front 270)
+      (place R2 350000 800000 front 270)
+      (place R1 500000 800000 front 270)
+    )
+    (component wave_gen
+      (place U1 471500 960000 front 270)
+    )
+  )
+  (was_is
+  )
+  (routes 
+    (resolution um 10)
+    (parser
+      (host_cad "KiCad's Pcbnew")
+      (host_version "(6.0.10)")
+    )
+    (library_out 
+      (padstack "Via[0-1]_800:400_um"
+        (shape
+          (circle F.Cu 8000 0 0)
+        )
+        (shape
+          (circle B.Cu 8000 0 0)
+        )
+        (attach off)
+      )
+    )
+    (network_out 
+      (net "Net-(R1-Pad1)"
+        (via "Via[0-1]_800:400_um" 40000 329960
+          (type protect)
+        )
+        (via "Via[0-1]_800:400_um" 160000 329960
+          (type protect)
+        )
+      )
+    )
+  )
+)
