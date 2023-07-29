@@ -2,10 +2,10 @@ def draw_rectangle(width, height):
     '''
         Draw a hollow rectangle in GCODE starting from top right
     '''
-    gcode = f'\nG1 X{round((-width), 3)} E1'
+    gcode = f'\nG1 X{round((-width), 3)} E1' if (height >= width) else f'\nG1 X{round((-width), 3)}'
     gcode += f'\nG1 Y{round((height), 3)} E1'
     gcode += f'\nG1 X{round((width), 3)} E1'
-    gcode += f'\nG1 Y{round((-height), 3)} E1'
+    gcode += f'\nG1 Y{round((-height), 3)} E1' if (width > height) else f'\nG1 Y{round((-height), 3)}'
     return gcode
 def generate_wire(wire, cur_position, print_layer, extrusion_head):
     """
@@ -25,9 +25,11 @@ def generate_wire(wire, cur_position, print_layer, extrusion_head):
     ## move to start of next net, including speed change
     x_diff = float(coordinates[0][0]) - float(cur_position[0])
     y_diff = float(coordinates[0][1]) - float(cur_position[1])
-    gcode += f'\nG1 Z2 F1000'
+    gcode += f'\nG1 F1000'
+    gcode += f'\nG1 Z2'
     gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)}'
-    gcode += f'\nG1 Z-2 F{extrusion_head.trace_speed}'
+    gcode += f'\nG1 Z-2'
+    gcode += f'\nG1 F{extrusion_head.trace_speed}'
 
     for i in range(len(coordinates)):
         if((i+1) != len(coordinates)):
@@ -66,9 +68,11 @@ def generate_pad(pad, component, cur_position, print_layer, extrusion_head):
 
 
     ## move to pad location, divided by 100 should print in milimiters
-    gcode += f'\nG1 Z2 F1000'
+    gcode += f'\nG1 F1000'
+    gcode += f'\nG1 Z2'
     gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)}'
-    gcode += f'\nG1 Z-2 F{extrusion_head.trace_speed}'
+    gcode += f'\nG1 Z-2'
+    gcode += f'\nG1 F{extrusion_head.trace_speed}'
     ## start in bottom right
     gcode += f'\nG1 X{round((width/2), 3)} Y{round((-height/2),3)} E1'
     short_side = width if (width < height) else height
@@ -92,7 +96,7 @@ def generate_pad(pad, component, cur_position, print_layer, extrusion_head):
     
     ## finalize the width
     if(i % 2 != 0):
-        gcode += f'\nG1 Y{round(long_side, 3)} E1' if (width == short_side) else f'\nG1 X{round(-long_side, 3)} E1'
+        gcode += f'\nG1 Y{round(long_side, 3)}' if (width == short_side) else f'\nG1 X{round(-long_side, 3)}'
 
     
     ## go back to center
@@ -119,9 +123,11 @@ def generate_via(via, cur_position, extrusion_head):
     y_diff = via.coords[1] - float(cur_position[1])
 
     ## move to via location, divided by 100 should print in milimiters, modyinf speed when moving
-    gcode += f'\nG1 Z2 F1000'
+    gcode += f'\nG1 F1000'
+    gcode += f'\nG1 Z2'
     gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)}'
-    gcode += f'\nG1 Z-2 F{extrusion_head.trace_speed}'
+    gcode += f'\nG1 Z-2'
+    gcode += f'\nG1 F{extrusion_head.trace_speed}'
 
     ## start in bottom right
     gcode += f'\nG1 X{round((side/2), 3)} Y{round((-side/2), 3)} E1'
