@@ -27,7 +27,7 @@ def import_netlist(board):
         Output:
             net_list (list) : list of Net objects
     '''
-    netlist_raw = open(r'kicad_import\Test3.net', 'r')
+    netlist_raw = open(r'config\netlist_information.net', 'r')
     netlist_data = netlist_raw.read()
     netlist_raw.close()
 

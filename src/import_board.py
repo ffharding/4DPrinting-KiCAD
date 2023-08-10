@@ -8,7 +8,7 @@ def start():
     os.chdir(dir_path)
     
     ## Import XML
-    path = r'kicad_import\board_information.xml'
+    path = r'config\board_information.xml'
     footprint_tree = ET.parse(path)
     footprint_root = footprint_tree.getroot()
     components = footprint_root.find('components')
