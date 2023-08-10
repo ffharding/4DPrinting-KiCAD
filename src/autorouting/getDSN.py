@@ -1,12 +1,10 @@
 import pcbnew
-import os
-dir = os.getcwd
 def genDSN(path):
     """
     Create SPECCTRA design file into the indicated directory
     Inputs:
-        dir: directory
+        path (str) : directory
     Outputs:
-        .dsn file
+        .dsn file at "path" directory
     """
     pcbnew.ExportSpecctraDSN(f'{path}.dsn')
