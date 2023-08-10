@@ -1,5 +1,6 @@
 import pcbnew
 from pcbnew import wxPointMM
+
 def addFootprint(ft_id, ft_lib, ft_ref,  mm_pos, orientation):
     '''
         Adding footprints from xml library to Footprint object for pcbnew

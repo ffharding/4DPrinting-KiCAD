@@ -25,22 +25,26 @@ def generate_wire(wire, cur_position, print_layer, extrusion_head):
     ## move to start of next net, including speed change
     x_diff = float(coordinates[0][0]) - float(cur_position[0])
     y_diff = float(coordinates[0][1]) - float(cur_position[1])
-    gcode += f'\nG1 F1000'
-    gcode += f'\nG1 Z2'
+    gcode += f'\nG1 F2000'
+    gcode += f'\nG1 Z3'
     gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)}'
-    gcode += f'\nG1 Z-2'
+    gcode += f'\nG1 Z-3'
     gcode += f'\nG1 F{extrusion_head.trace_speed}'
 
-    for i in range(len(coordinates)):
-        if((i+1) != len(coordinates)):
-            x_diff = float(coordinates[i+1][0]) - float(coordinates[i][0])
-            y_diff = float(coordinates[i+1][1]) - float(coordinates[i][1])
-            if((x_diff != 0) and (y_diff == 0)):
-                gcode += f'\nG1 X{round((x_diff/10000), 3)} E1'
-            elif((y_diff != 0) and (x_diff == 0)):
-                gcode += f'\nG1 Y{round((y_diff/10000), 3)} E1'
-            elif((y_diff != 0) and (x_diff != 0)):
-                gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)} E1'
+    trace_num = 3 if (("B.Cu" == print_layer)) else 1
+
+    for i in range(trace_num):
+        direction = 1 if ((i % 2) == 0) else -1
+        for i in range(len(coordinates)):
+            if((i+1) != len(coordinates)):
+                x_diff = float(coordinates[i+1][0]) - float(coordinates[i][0])
+                y_diff = float(coordinates[i+1][1]) - float(coordinates[i][1])
+                if((x_diff != 0) and (y_diff == 0)):
+                    gcode += f'\nG1 X{direction * round((x_diff/10000), 3)} E1'
+                elif((y_diff != 0) and (x_diff == 0)):
+                    gcode += f'\nG1 Y{direction * round((y_diff/10000), 3)} E1'
+                elif((y_diff != 0) and (x_diff != 0)):
+                    gcode += f'\nG1 X{direction * round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)} E1'
 
     return gcode, coordinates[-1] if (wire.layer == print_layer) else cur_position
 
@@ -68,10 +72,10 @@ def generate_pad(pad, component, cur_position, print_layer, extrusion_head):
 
 
     ## move to pad location, divided by 100 should print in milimiters
-    gcode += f'\nG1 F1000'
-    gcode += f'\nG1 Z2'
+    gcode += f'\nG1 F2000'
+    gcode += f'\nG1 Z3'
     gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)}'
-    gcode += f'\nG1 Z-2'
+    gcode += f'\nG1 Z-3'
     gcode += f'\nG1 F{extrusion_head.trace_speed}'
     ## start in bottom right
     gcode += f'\nG1 X{round((width/2), 3)} Y{round((-height/2),3)} E1'
@@ -123,10 +127,10 @@ def generate_via(via, cur_position, extrusion_head):
     y_diff = via.coords[1] - float(cur_position[1])
 
     ## move to via location, divided by 100 should print in milimiters, modyinf speed when moving
-    gcode += f'\nG1 F1000'
-    gcode += f'\nG1 Z2'
+    gcode += f'\nG1 F2000'
+    gcode += f'\nG1 Z3'
     gcode += f'\nG1 X{round((x_diff/10000), 3)} Y{round((y_diff/10000), 3)}'
-    gcode += f'\nG1 Z-2'
+    gcode += f'\nG1 Z-3'
     gcode += f'\nG1 F{extrusion_head.trace_speed}'
 
     ## start in bottom right

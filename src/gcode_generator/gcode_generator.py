@@ -14,9 +14,10 @@ def GCODE_gen(filepath, print_layer, net_list, component_list, gcode_header, ext
     """
 
     ### Header for GCODE
+
     gcode = gcode_header
     cur_position = (0,0)
-
+    gcode += "\n;Printing vias"
     for net in net_list:
         for via in net.via_list:
             ## vias will be printed on both layers, if it is top layer, print 3 pads with 0.5
@@ -28,16 +29,18 @@ def GCODE_gen(filepath, print_layer, net_list, component_list, gcode_header, ext
                     gcode += "\nG1 Z0.5 E1"
             gcode_result, cur_position = generate_functions.generate_via(via, cur_position, extrusion_head)
             gcode += gcode_result
+    gcode += "\n;Printing pads"
     for component in component_list:
         for pad in component.pad_list:
             gcode_result, cur_position = generate_functions.generate_pad(pad, component, cur_position, print_layer, extrusion_head)
             if (pad.layer == print_layer):
                 gcode += gcode_result
+    gcode += "\n;Printing traces"
     for net in net_list:
         for wire in net.wire_list:
             gcode_result, cur_position = generate_functions.generate_wire(wire, cur_position, print_layer, extrusion_head) ## probably will need changes
             if (wire.layer == print_layer):
-                gcode += gcode_result if (print_layer == 'F.Cu') else (gcode_result + gcode_result + gcode_result)
+                gcode += gcode_result 
 
     file = open(f"{filepath}_{print_layer}.GCODE", "w")
     file.writelines(gcode)

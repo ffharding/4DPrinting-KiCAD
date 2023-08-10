@@ -2,8 +2,8 @@ import xml.etree.ElementTree as ET
 from kicad_import import netlist_manager, footprint_functions, connect_pads, drawing_functions
 import pcbnew
 import os
-import main
-def import_components():
+import export_GCODE
+def start():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(dir_path)
     
@@ -42,6 +42,3 @@ def import_components():
     edge_cuts = drawing_functions.add_rectangle(board, (0,0), (60, -100), 0.1, 'Edge.Cuts')
     board.Add(edge_cuts)
     pcbnew.Refresh()
-
-import_components()
-main.start()

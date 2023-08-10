@@ -1,4 +1,4 @@
-(pcb "C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/examples/gcode-generator/Testing Complex Net GCODE GEN/Test3/Test3.dsn"
+(pcb "C:/Users/Franco/OneDrive/Documentos/Purdue/Fall 2022/Research 4D/Github Repo/4DPrinting-KiCAD/examples/gcode-generator/Testing Complex Net GCODE GEN/Test3/Test3/Test3.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
@@ -96,22 +96,22 @@
       (outline (path signal 200  -7655 -100  -7670.88 -154.064  -7713.46 -190.963  -7769.23 -198.982
             -7820.49 -175.575  -7850.95 -128.173  -7850.95 -71.827  -7820.49 -24.425
             -7769.23 -1.018  -7713.46 -9.037  -7670.88 -45.936  -7655 -100))
-      (pin Rect[T]Pad_2510x910_um 1 -5500 -100)
-      (pin Rect[T]Pad_2510x910_um 2 -5500 -1600)
-      (pin Rect[T]Pad_2510x910_um 3 -5500 -3100)
-      (pin Rect[T]Pad_2510x910_um 4 -5500 -4600)
-      (pin Rect[T]Pad_2510x910_um 5 -5500 -6100)
-      (pin Rect[T]Pad_2510x910_um 6 -5500 -7600)
-      (pin Rect[T]Pad_2510x910_um 7 -5500 -9100)
-      (pin Rect[T]Pad_2510x910_um 8 5500 -9100)
-      (pin Rect[T]Pad_2510x910_um 9 5500 -7600)
-      (pin Rect[T]Pad_2510x910_um 10 5500 -6100)
-      (pin Rect[T]Pad_2510x910_um 11 5500 -4600)
-      (pin Rect[T]Pad_2510x910_um 12 5500 -3100)
-      (pin Rect[T]Pad_2510x910_um 13 5500 -1600)
-      (pin Rect[T]Pad_2510x910_um 14 5500 -100)
-      (pin Rect[T]Pad_2510x910_um 15 5500 1400)
-      (pin Rect[T]Pad_2510x910_um 16 5500 2900)
+      (pin Rect[T]Pad_2510x410_um 1 -5500 -100)
+      (pin Rect[T]Pad_2510x410_um 2 -5500 -1600)
+      (pin Rect[T]Pad_2510x410_um 3 -5500 -3100)
+      (pin Rect[T]Pad_2510x410_um 4 -5500 -4600)
+      (pin Rect[T]Pad_2510x410_um 5 -5500 -6100)
+      (pin Rect[T]Pad_2510x410_um 6 -5500 -7600)
+      (pin Rect[T]Pad_2510x410_um 7 -5500 -9100)
+      (pin Rect[T]Pad_2510x410_um 8 5500 -9100)
+      (pin Rect[T]Pad_2510x410_um 9 5500 -7600)
+      (pin Rect[T]Pad_2510x410_um 10 5500 -6100)
+      (pin Rect[T]Pad_2510x410_um 11 5500 -4600)
+      (pin Rect[T]Pad_2510x410_um 12 5500 -3100)
+      (pin Rect[T]Pad_2510x410_um 13 5500 -1600)
+      (pin Rect[T]Pad_2510x410_um 14 5500 -100)
+      (pin Rect[T]Pad_2510x410_um 15 5500 1400)
+      (pin Rect[T]Pad_2510x410_um 16 5500 2900)
       (keepout "" (polygon F.Cu 0  -6150 10000  6150 10000  6150 3400  -6150 3400  -6150 10000))
       (via_keepout "" (polygon F.Cu 0  -6150 10000  6150 10000  6150 3400  -6150 3400  -6150 10000))
       (via_keepout "" (polygon B.Cu 0  -6150 10000  6150 10000  6150 3400  -6150 3400  -6150 10000))
@@ -156,14 +156,14 @@
       (outline (path signal 0.1  1990 2000  3590 2000  3590 -2000  1990 -2000))
       (pin Rect[T]Pad_4000x4000_um 1 -5600 0)
       (pin Rect[T]Pad_4000x4000_um 2 5600 0)
-      (keepout "" (polygon F.Cu 0  5990 2000  3590 2000  3590 -2000  5990 -2000  5990 -3600
-            1990 -3600  1990 -800  -2000 -800  -2000 -3600  -6000 -3600
-            -6000 -2000  -3600 -2000  -3600 2000  -6000 2000  -6000 3600
-            -2000 3600  -2000 800  1990 800  1990 3600  5990 3600  5990 2000))
-      (keepout "" (polygon B.Cu 0  5990 2000  3590 2000  3590 -2000  5990 -2000  5990 -3600
-            1990 -3600  1990 -800  -2000 -800  -2000 -3600  -6000 -3600
-            -6000 -2000  -3600 -2000  -3600 2000  -6000 2000  -6000 3600
-            -2000 3600  -2000 800  1990 800  1990 3600  5990 3600  5990 2000))
+      (keepout "" (polygon F.Cu 0  8000 2000  3590 2000  3590 -2000  8000 -2000  8000 -3600
+            1990 -3600  1990 -800  -2000 -800  -2000 -3600  -8000 -3600
+            -8000 -2000  -3600 -2000  -3600 2000  -8000 2000  -8000 3600
+            -2000 3600  -2000 800  1990 800  1990 3600  8000 3600  8000 2000))
+      (keepout "" (polygon B.Cu 0  8000 2000  3590 2000  3590 -2000  8000 -2000  8000 -3600
+            1990 -3600  1990 -800  -2000 -800  -2000 -3600  -8000 -3600
+            -8000 -2000  -3600 -2000  -3600 2000  -8000 2000  -8000 3600
+            -2000 3600  -2000 800  1990 800  1990 3600  8000 3600  8000 2000))
     )
     (image wave_gen
       (outline (path signal 0.1  -2000 -2350  -3600 -2350  -3600 -5540  -2000 -5540))
@@ -183,8 +183,8 @@
       (keepout "" (polygon B.Cu 0  -3590 6800  -1990 6800  -1990 2340  2010 2350  2010 6800
             3610 6800  3610 750  -3590 750  -3590 6800))
     )
-    (padstack Rect[T]Pad_2510x910_um
-      (shape (rect F.Cu -1255 -455 1255 455))
+    (padstack Rect[T]Pad_2510x410_um
+      (shape (rect F.Cu -1255 -205 1255 205))
       (attach off)
     )
     (padstack Rect[T]Pad_3070x1700_um

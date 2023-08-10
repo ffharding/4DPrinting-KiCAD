@@ -61,9 +61,6 @@ class extruder_head():
         return head_offset_dict
 
 def initialize_GCODE(extrusion_head, print_layer):
-    '''
-        Initialize GCODE with specified extrusion head
-    '''
     """
     Initialize GCODE with specified extrusion head
     Inputs:

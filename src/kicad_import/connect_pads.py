@@ -1,5 +1,3 @@
-import pcbnew
-
 def netlist_connect(component, net_list):
     '''
         Summary:
