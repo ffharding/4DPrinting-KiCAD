@@ -2,10 +2,10 @@ import xml.etree.ElementTree as ET
 from kicad_import import netlist_manager, footprint_functions, connect_pads, drawing_functions
 import pcbnew
 import os
-import export_GCODE
 def start():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     os.chdir(dir_path)
+    footprint_lib = os.getenv("4DPrintingComponents")
     
     ## Import XML
     path = r'config\board_information.xml'
@@ -14,6 +14,7 @@ def start():
     components = footprint_root.find('components')
     keepouts = footprint_root.find('keepouts')
     vias = footprint_root.find('vias')
+
     ## Get Board and Add footprint to board
     board = pcbnew.GetBoard()
 
@@ -22,7 +23,7 @@ def start():
     
     for component in components:
         x, y = component.find('position')
-        footprint = footprint_functions.addFootprint(component.get('name'), component.find('path').text, component.find('ref').text, (float(x.text), float(y.text)), float(component.find('orientation').text))
+        footprint = footprint_functions.addFootprint(component.get('name'), footprint_lib, component.find('ref').text, (float(x.text), float(y.text)), float(component.find('orientation').text))
         connect_pads.netlist_connect(footprint, net_list)
         board.Add(footprint)
 
